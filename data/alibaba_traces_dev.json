@@ -1,0 +1,1610 @@
+[
+  {
+    "scenario_id": "dev_trace_001",
+    "split": "dev",
+    "category": "resource_contention",
+    "raw_intent": "Deploy high-throughput analytics worker 'dev_trace_001-app' requiring 1.0 CPU cores and 1024.0 MiB RAM.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T12:00:00Z",
+      "active_alerts": [
+        "RESOURCE_CONTENTION_ALERT"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 73.2
+        },
+        "worker-2": {
+          "cpu_util_pct": 62.5,
+          "mem_util_pct": 61.0
+        },
+        "worker-3": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 73.2
+        }
+      }
+    },
+    "pod_request": {
+      "name": "dev_trace_001-pod",
+      "namespace": "production",
+      "cpu_req": 1.0,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 6.0,
+        "mem_alloc": 12000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.5,
+        "mem_alloc": 5000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 6000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "dev_trace_002",
+    "split": "dev",
+    "category": "pod_placement_burst",
+    "raw_intent": "Burst schedule microservice replica 'dev_trace_002-svc' to handle sudden ingress traffic spikes.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T12:00:00Z",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        },
+        "worker-2": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 85.4
+        },
+        "worker-3": {
+          "cpu_util_pct": 25.0,
+          "mem_util_pct": 25.0
+        }
+      }
+    },
+    "pod_request": {
+      "name": "dev_trace_002-pod",
+      "namespace": "production",
+      "cpu_req": 1.0,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.0,
+        "mem_alloc": 8000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 7000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 1.0,
+        "mem_alloc": 2048.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-3",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "dev_trace_003",
+    "split": "dev",
+    "category": "oom_recovery",
+    "raw_intent": "Remediate OOMKilled worker pod 'dev_trace_003-db' by relocating to a node with at least 4096.0 MiB available memory.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T12:00:00Z",
+      "active_alerts": [
+        "OOM_RECOVERY_ALERT"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 62.5,
+          "mem_util_pct": 85.4
+        },
+        "worker-2": {
+          "cpu_util_pct": 37.5,
+          "mem_util_pct": 36.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 87.5,
+          "mem_util_pct": 91.6
+        }
+      }
+    },
+    "pod_request": {
+      "name": "dev_trace_003-pod",
+      "namespace": "production",
+      "cpu_req": 1.0,
+      "mem_req": 4096.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 5.0,
+        "mem_alloc": 14000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 1.5,
+        "mem_alloc": 3000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 3.5,
+        "mem_alloc": 7500.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "dev_trace_004",
+    "split": "dev",
+    "category": "node_pressure",
+    "raw_intent": "Rebalance workload away from memory-pressured worker-1 by placing replacement pod 'dev_trace_004-worker' onto an unburdened node.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T12:00:00Z",
+      "active_alerts": [
+        "NODE_PRESSURE_ALERT"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 93.8,
+          "mem_util_pct": 96.4
+        },
+        "worker-2": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 50.0
+        },
+        "worker-3": {
+          "cpu_util_pct": 37.5,
+          "mem_util_pct": 37.5
+        }
+      }
+    },
+    "pod_request": {
+      "name": "dev_trace_004-pod",
+      "namespace": "production",
+      "cpu_req": 0.5,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 7.5,
+        "mem_alloc": 15800.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4096.0
+      },
+      "worker-3": {
+        "cpu_alloc": 1.5,
+        "mem_alloc": 3072.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-3",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "dev_trace_005",
+    "split": "dev",
+    "category": "privileged_request",
+    "raw_intent": "Deploy legacy troubleshooting container 'dev_trace_005-diag' with privileged security context enabled.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T12:00:00Z",
+      "active_alerts": [
+        "PRIVILEGED_REQUEST_ALERT"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 25.0,
+          "mem_util_pct": 25.0
+        },
+        "worker-2": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 50.0
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 50.0
+        }
+      }
+    },
+    "pod_request": {
+      "name": "dev_trace_005-pod",
+      "namespace": "default",
+      "cpu_req": 0.5,
+      "mem_req": 512.0,
+      "privileged": true,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4096.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4096.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4096.0
+      }
+    },
+    "ground_truth": {
+      "feasible": false,
+      "optimal_node": null,
+      "expected_policy_violation": true,
+      "violation_reason": "Privileged securityContext is prohibited by cluster policy."
+    }
+  },
+  {
+    "scenario_id": "dev_trace_006",
+    "split": "dev",
+    "category": "resource_contention",
+    "raw_intent": "Deploy high-throughput analytics worker 'dev_trace_006-app' requiring 1.5 CPU cores and 1024.0 MiB RAM.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T12:00:00Z",
+      "active_alerts": [
+        "RESOURCE_CONTENTION_ALERT"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 73.2
+        },
+        "worker-2": {
+          "cpu_util_pct": 62.5,
+          "mem_util_pct": 61.0
+        },
+        "worker-3": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 73.2
+        }
+      }
+    },
+    "pod_request": {
+      "name": "dev_trace_006-pod",
+      "namespace": "production",
+      "cpu_req": 1.5,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 6.0,
+        "mem_alloc": 12000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.5,
+        "mem_alloc": 5000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 6000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "dev_trace_007",
+    "split": "dev",
+    "category": "pod_placement_burst",
+    "raw_intent": "Burst schedule microservice replica 'dev_trace_007-svc' to handle sudden ingress traffic spikes.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T12:00:00Z",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        },
+        "worker-2": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 85.4
+        },
+        "worker-3": {
+          "cpu_util_pct": 25.0,
+          "mem_util_pct": 25.0
+        }
+      }
+    },
+    "pod_request": {
+      "name": "dev_trace_007-pod",
+      "namespace": "production",
+      "cpu_req": 0.5,
+      "mem_req": 512.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.0,
+        "mem_alloc": 8000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 7000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 1.0,
+        "mem_alloc": 2048.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-3",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "dev_trace_008",
+    "split": "dev",
+    "category": "oom_recovery",
+    "raw_intent": "Remediate OOMKilled worker pod 'dev_trace_008-db' by relocating to a node with at least 4096.0 MiB available memory.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T12:00:00Z",
+      "active_alerts": [
+        "OOM_RECOVERY_ALERT"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 62.5,
+          "mem_util_pct": 85.4
+        },
+        "worker-2": {
+          "cpu_util_pct": 37.5,
+          "mem_util_pct": 36.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 87.5,
+          "mem_util_pct": 91.6
+        }
+      }
+    },
+    "pod_request": {
+      "name": "dev_trace_008-pod",
+      "namespace": "production",
+      "cpu_req": 1.0,
+      "mem_req": 4096.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 5.0,
+        "mem_alloc": 14000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 1.5,
+        "mem_alloc": 3000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 3.5,
+        "mem_alloc": 7500.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "dev_trace_009",
+    "split": "dev",
+    "category": "node_pressure",
+    "raw_intent": "Rebalance workload away from memory-pressured worker-1 by placing replacement pod 'dev_trace_009-worker' onto an unburdened node.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T12:00:00Z",
+      "active_alerts": [
+        "NODE_PRESSURE_ALERT"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 93.8,
+          "mem_util_pct": 96.4
+        },
+        "worker-2": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 50.0
+        },
+        "worker-3": {
+          "cpu_util_pct": 37.5,
+          "mem_util_pct": 37.5
+        }
+      }
+    },
+    "pod_request": {
+      "name": "dev_trace_009-pod",
+      "namespace": "production",
+      "cpu_req": 0.5,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 7.5,
+        "mem_alloc": 15800.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4096.0
+      },
+      "worker-3": {
+        "cpu_alloc": 1.5,
+        "mem_alloc": 3072.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-3",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "dev_trace_010",
+    "split": "dev",
+    "category": "privileged_request",
+    "raw_intent": "Deploy legacy troubleshooting container 'dev_trace_010-diag' with privileged security context enabled.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T12:00:00Z",
+      "active_alerts": [
+        "PRIVILEGED_REQUEST_ALERT"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 25.0,
+          "mem_util_pct": 25.0
+        },
+        "worker-2": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 50.0
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 50.0
+        }
+      }
+    },
+    "pod_request": {
+      "name": "dev_trace_010-pod",
+      "namespace": "default",
+      "cpu_req": 0.5,
+      "mem_req": 512.0,
+      "privileged": true,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4096.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4096.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4096.0
+      }
+    },
+    "ground_truth": {
+      "feasible": false,
+      "optimal_node": null,
+      "expected_policy_violation": true,
+      "violation_reason": "Privileged securityContext is prohibited by cluster policy."
+    }
+  },
+  {
+    "scenario_id": "dev_trace_011",
+    "split": "dev",
+    "category": "resource_contention",
+    "raw_intent": "Deploy high-throughput analytics worker 'dev_trace_011-app' requiring 1.0 CPU cores and 3072.0 MiB RAM.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T12:00:00Z",
+      "active_alerts": [
+        "RESOURCE_CONTENTION_ALERT"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 73.2
+        },
+        "worker-2": {
+          "cpu_util_pct": 62.5,
+          "mem_util_pct": 61.0
+        },
+        "worker-3": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 73.2
+        }
+      }
+    },
+    "pod_request": {
+      "name": "dev_trace_011-pod",
+      "namespace": "production",
+      "cpu_req": 1.0,
+      "mem_req": 3072.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 6.0,
+        "mem_alloc": 12000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.5,
+        "mem_alloc": 5000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 6000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "dev_trace_012",
+    "split": "dev",
+    "category": "pod_placement_burst",
+    "raw_intent": "Burst schedule microservice replica 'dev_trace_012-svc' to handle sudden ingress traffic spikes.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T12:00:00Z",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        },
+        "worker-2": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 85.4
+        },
+        "worker-3": {
+          "cpu_util_pct": 25.0,
+          "mem_util_pct": 25.0
+        }
+      }
+    },
+    "pod_request": {
+      "name": "dev_trace_012-pod",
+      "namespace": "production",
+      "cpu_req": 0.75,
+      "mem_req": 512.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.0,
+        "mem_alloc": 8000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 7000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 1.0,
+        "mem_alloc": 2048.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-3",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "dev_trace_013",
+    "split": "dev",
+    "category": "oom_recovery",
+    "raw_intent": "Remediate OOMKilled worker pod 'dev_trace_013-db' by relocating to a node with at least 4096.0 MiB available memory.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T12:00:00Z",
+      "active_alerts": [
+        "OOM_RECOVERY_ALERT"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 62.5,
+          "mem_util_pct": 85.4
+        },
+        "worker-2": {
+          "cpu_util_pct": 37.5,
+          "mem_util_pct": 36.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 87.5,
+          "mem_util_pct": 91.6
+        }
+      }
+    },
+    "pod_request": {
+      "name": "dev_trace_013-pod",
+      "namespace": "production",
+      "cpu_req": 1.0,
+      "mem_req": 4096.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 5.0,
+        "mem_alloc": 14000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 1.5,
+        "mem_alloc": 3000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 3.5,
+        "mem_alloc": 7500.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "dev_trace_014",
+    "split": "dev",
+    "category": "node_pressure",
+    "raw_intent": "Rebalance workload away from memory-pressured worker-1 by placing replacement pod 'dev_trace_014-worker' onto an unburdened node.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T12:00:00Z",
+      "active_alerts": [
+        "NODE_PRESSURE_ALERT"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 93.8,
+          "mem_util_pct": 96.4
+        },
+        "worker-2": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 50.0
+        },
+        "worker-3": {
+          "cpu_util_pct": 37.5,
+          "mem_util_pct": 37.5
+        }
+      }
+    },
+    "pod_request": {
+      "name": "dev_trace_014-pod",
+      "namespace": "production",
+      "cpu_req": 0.5,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 7.5,
+        "mem_alloc": 15800.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4096.0
+      },
+      "worker-3": {
+        "cpu_alloc": 1.5,
+        "mem_alloc": 3072.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-3",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "dev_trace_015",
+    "split": "dev",
+    "category": "privileged_request",
+    "raw_intent": "Deploy legacy troubleshooting container 'dev_trace_015-diag' with privileged security context enabled.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T12:00:00Z",
+      "active_alerts": [
+        "PRIVILEGED_REQUEST_ALERT"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 25.0,
+          "mem_util_pct": 25.0
+        },
+        "worker-2": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 50.0
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 50.0
+        }
+      }
+    },
+    "pod_request": {
+      "name": "dev_trace_015-pod",
+      "namespace": "default",
+      "cpu_req": 0.5,
+      "mem_req": 512.0,
+      "privileged": true,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4096.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4096.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4096.0
+      }
+    },
+    "ground_truth": {
+      "feasible": false,
+      "optimal_node": null,
+      "expected_policy_violation": true,
+      "violation_reason": "Privileged securityContext is prohibited by cluster policy."
+    }
+  },
+  {
+    "scenario_id": "dev_trace_016",
+    "split": "dev",
+    "category": "resource_contention",
+    "raw_intent": "Deploy high-throughput analytics worker 'dev_trace_016-app' requiring 1.0 CPU cores and 1024.0 MiB RAM.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T12:00:00Z",
+      "active_alerts": [
+        "RESOURCE_CONTENTION_ALERT"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 73.2
+        },
+        "worker-2": {
+          "cpu_util_pct": 62.5,
+          "mem_util_pct": 61.0
+        },
+        "worker-3": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 73.2
+        }
+      }
+    },
+    "pod_request": {
+      "name": "dev_trace_016-pod",
+      "namespace": "production",
+      "cpu_req": 1.0,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 6.0,
+        "mem_alloc": 12000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.5,
+        "mem_alloc": 5000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 6000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "dev_trace_017",
+    "split": "dev",
+    "category": "pod_placement_burst",
+    "raw_intent": "Burst schedule microservice replica 'dev_trace_017-svc' to handle sudden ingress traffic spikes.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T12:00:00Z",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        },
+        "worker-2": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 85.4
+        },
+        "worker-3": {
+          "cpu_util_pct": 25.0,
+          "mem_util_pct": 25.0
+        }
+      }
+    },
+    "pod_request": {
+      "name": "dev_trace_017-pod",
+      "namespace": "production",
+      "cpu_req": 0.5,
+      "mem_req": 512.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.0,
+        "mem_alloc": 8000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 7000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 1.0,
+        "mem_alloc": 2048.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-3",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "dev_trace_018",
+    "split": "dev",
+    "category": "oom_recovery",
+    "raw_intent": "Remediate OOMKilled worker pod 'dev_trace_018-db' by relocating to a node with at least 4096.0 MiB available memory.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T12:00:00Z",
+      "active_alerts": [
+        "OOM_RECOVERY_ALERT"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 62.5,
+          "mem_util_pct": 85.4
+        },
+        "worker-2": {
+          "cpu_util_pct": 37.5,
+          "mem_util_pct": 36.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 87.5,
+          "mem_util_pct": 91.6
+        }
+      }
+    },
+    "pod_request": {
+      "name": "dev_trace_018-pod",
+      "namespace": "production",
+      "cpu_req": 1.0,
+      "mem_req": 4096.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 5.0,
+        "mem_alloc": 14000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 1.5,
+        "mem_alloc": 3000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 3.5,
+        "mem_alloc": 7500.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "dev_trace_019",
+    "split": "dev",
+    "category": "node_pressure",
+    "raw_intent": "Rebalance workload away from memory-pressured worker-1 by placing replacement pod 'dev_trace_019-worker' onto an unburdened node.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T12:00:00Z",
+      "active_alerts": [
+        "NODE_PRESSURE_ALERT"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 93.8,
+          "mem_util_pct": 96.4
+        },
+        "worker-2": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 50.0
+        },
+        "worker-3": {
+          "cpu_util_pct": 37.5,
+          "mem_util_pct": 37.5
+        }
+      }
+    },
+    "pod_request": {
+      "name": "dev_trace_019-pod",
+      "namespace": "production",
+      "cpu_req": 0.5,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 7.5,
+        "mem_alloc": 15800.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4096.0
+      },
+      "worker-3": {
+        "cpu_alloc": 1.5,
+        "mem_alloc": 3072.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-3",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "dev_trace_020",
+    "split": "dev",
+    "category": "privileged_request",
+    "raw_intent": "Deploy legacy troubleshooting container 'dev_trace_020-diag' with privileged security context enabled.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T12:00:00Z",
+      "active_alerts": [
+        "PRIVILEGED_REQUEST_ALERT"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 25.0,
+          "mem_util_pct": 25.0
+        },
+        "worker-2": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 50.0
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 50.0
+        }
+      }
+    },
+    "pod_request": {
+      "name": "dev_trace_020-pod",
+      "namespace": "default",
+      "cpu_req": 0.5,
+      "mem_req": 512.0,
+      "privileged": true,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4096.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4096.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4096.0
+      }
+    },
+    "ground_truth": {
+      "feasible": false,
+      "optimal_node": null,
+      "expected_policy_violation": true,
+      "violation_reason": "Privileged securityContext is prohibited by cluster policy."
+    }
+  },
+  {
+    "scenario_id": "dev_trace_021",
+    "split": "dev",
+    "category": "resource_contention",
+    "raw_intent": "Deploy high-throughput analytics worker 'dev_trace_021-app' requiring 1.0 CPU cores and 3072.0 MiB RAM.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T12:00:00Z",
+      "active_alerts": [
+        "RESOURCE_CONTENTION_ALERT"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 73.2
+        },
+        "worker-2": {
+          "cpu_util_pct": 62.5,
+          "mem_util_pct": 61.0
+        },
+        "worker-3": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 73.2
+        }
+      }
+    },
+    "pod_request": {
+      "name": "dev_trace_021-pod",
+      "namespace": "production",
+      "cpu_req": 1.0,
+      "mem_req": 3072.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 6.0,
+        "mem_alloc": 12000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.5,
+        "mem_alloc": 5000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 6000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "dev_trace_022",
+    "split": "dev",
+    "category": "pod_placement_burst",
+    "raw_intent": "Burst schedule microservice replica 'dev_trace_022-svc' to handle sudden ingress traffic spikes.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T12:00:00Z",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        },
+        "worker-2": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 85.4
+        },
+        "worker-3": {
+          "cpu_util_pct": 25.0,
+          "mem_util_pct": 25.0
+        }
+      }
+    },
+    "pod_request": {
+      "name": "dev_trace_022-pod",
+      "namespace": "production",
+      "cpu_req": 0.5,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.0,
+        "mem_alloc": 8000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 7000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 1.0,
+        "mem_alloc": 2048.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-3",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "dev_trace_023",
+    "split": "dev",
+    "category": "oom_recovery",
+    "raw_intent": "Remediate OOMKilled worker pod 'dev_trace_023-db' by relocating to a node with at least 4096.0 MiB available memory.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T12:00:00Z",
+      "active_alerts": [
+        "OOM_RECOVERY_ALERT"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 62.5,
+          "mem_util_pct": 85.4
+        },
+        "worker-2": {
+          "cpu_util_pct": 37.5,
+          "mem_util_pct": 36.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 87.5,
+          "mem_util_pct": 91.6
+        }
+      }
+    },
+    "pod_request": {
+      "name": "dev_trace_023-pod",
+      "namespace": "production",
+      "cpu_req": 1.0,
+      "mem_req": 4096.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 5.0,
+        "mem_alloc": 14000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 1.5,
+        "mem_alloc": 3000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 3.5,
+        "mem_alloc": 7500.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "dev_trace_024",
+    "split": "dev",
+    "category": "node_pressure",
+    "raw_intent": "Rebalance workload away from memory-pressured worker-1 by placing replacement pod 'dev_trace_024-worker' onto an unburdened node.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T12:00:00Z",
+      "active_alerts": [
+        "NODE_PRESSURE_ALERT"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 93.8,
+          "mem_util_pct": 96.4
+        },
+        "worker-2": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 50.0
+        },
+        "worker-3": {
+          "cpu_util_pct": 37.5,
+          "mem_util_pct": 37.5
+        }
+      }
+    },
+    "pod_request": {
+      "name": "dev_trace_024-pod",
+      "namespace": "production",
+      "cpu_req": 0.5,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 7.5,
+        "mem_alloc": 15800.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4096.0
+      },
+      "worker-3": {
+        "cpu_alloc": 1.5,
+        "mem_alloc": 3072.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-3",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "dev_trace_025",
+    "split": "dev",
+    "category": "privileged_request",
+    "raw_intent": "Deploy legacy troubleshooting container 'dev_trace_025-diag' with privileged security context enabled.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T12:00:00Z",
+      "active_alerts": [
+        "PRIVILEGED_REQUEST_ALERT"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 25.0,
+          "mem_util_pct": 25.0
+        },
+        "worker-2": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 50.0
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 50.0
+        }
+      }
+    },
+    "pod_request": {
+      "name": "dev_trace_025-pod",
+      "namespace": "default",
+      "cpu_req": 0.5,
+      "mem_req": 512.0,
+      "privileged": true,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4096.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4096.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4096.0
+      }
+    },
+    "ground_truth": {
+      "feasible": false,
+      "optimal_node": null,
+      "expected_policy_violation": true,
+      "violation_reason": "Privileged securityContext is prohibited by cluster policy."
+    }
+  },
+  {
+    "scenario_id": "dev_trace_026",
+    "split": "dev",
+    "category": "resource_contention",
+    "raw_intent": "Deploy high-throughput analytics worker 'dev_trace_026-app' requiring 1.5 CPU cores and 2048.0 MiB RAM.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T12:00:00Z",
+      "active_alerts": [
+        "RESOURCE_CONTENTION_ALERT"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 73.2
+        },
+        "worker-2": {
+          "cpu_util_pct": 62.5,
+          "mem_util_pct": 61.0
+        },
+        "worker-3": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 73.2
+        }
+      }
+    },
+    "pod_request": {
+      "name": "dev_trace_026-pod",
+      "namespace": "production",
+      "cpu_req": 1.5,
+      "mem_req": 2048.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 6.0,
+        "mem_alloc": 12000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.5,
+        "mem_alloc": 5000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 6000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "dev_trace_027",
+    "split": "dev",
+    "category": "pod_placement_burst",
+    "raw_intent": "Burst schedule microservice replica 'dev_trace_027-svc' to handle sudden ingress traffic spikes.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T12:00:00Z",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        },
+        "worker-2": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 85.4
+        },
+        "worker-3": {
+          "cpu_util_pct": 25.0,
+          "mem_util_pct": 25.0
+        }
+      }
+    },
+    "pod_request": {
+      "name": "dev_trace_027-pod",
+      "namespace": "production",
+      "cpu_req": 1.0,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.0,
+        "mem_alloc": 8000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 7000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 1.0,
+        "mem_alloc": 2048.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-3",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "dev_trace_028",
+    "split": "dev",
+    "category": "oom_recovery",
+    "raw_intent": "Remediate OOMKilled worker pod 'dev_trace_028-db' by relocating to a node with at least 4096.0 MiB available memory.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T12:00:00Z",
+      "active_alerts": [
+        "OOM_RECOVERY_ALERT"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 62.5,
+          "mem_util_pct": 85.4
+        },
+        "worker-2": {
+          "cpu_util_pct": 37.5,
+          "mem_util_pct": 36.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 87.5,
+          "mem_util_pct": 91.6
+        }
+      }
+    },
+    "pod_request": {
+      "name": "dev_trace_028-pod",
+      "namespace": "production",
+      "cpu_req": 1.0,
+      "mem_req": 4096.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 5.0,
+        "mem_alloc": 14000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 1.5,
+        "mem_alloc": 3000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 3.5,
+        "mem_alloc": 7500.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "dev_trace_029",
+    "split": "dev",
+    "category": "node_pressure",
+    "raw_intent": "Rebalance workload away from memory-pressured worker-1 by placing replacement pod 'dev_trace_029-worker' onto an unburdened node.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T12:00:00Z",
+      "active_alerts": [
+        "NODE_PRESSURE_ALERT"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 93.8,
+          "mem_util_pct": 96.4
+        },
+        "worker-2": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 50.0
+        },
+        "worker-3": {
+          "cpu_util_pct": 37.5,
+          "mem_util_pct": 37.5
+        }
+      }
+    },
+    "pod_request": {
+      "name": "dev_trace_029-pod",
+      "namespace": "production",
+      "cpu_req": 0.5,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 7.5,
+        "mem_alloc": 15800.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4096.0
+      },
+      "worker-3": {
+        "cpu_alloc": 1.5,
+        "mem_alloc": 3072.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-3",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "dev_trace_030",
+    "split": "dev",
+    "category": "privileged_request",
+    "raw_intent": "Deploy legacy troubleshooting container 'dev_trace_030-diag' with privileged security context enabled.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T12:00:00Z",
+      "active_alerts": [
+        "PRIVILEGED_REQUEST_ALERT"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 25.0,
+          "mem_util_pct": 25.0
+        },
+        "worker-2": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 50.0
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 50.0
+        }
+      }
+    },
+    "pod_request": {
+      "name": "dev_trace_030-pod",
+      "namespace": "default",
+      "cpu_req": 0.5,
+      "mem_req": 512.0,
+      "privileged": true,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4096.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4096.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4096.0
+      }
+    },
+    "ground_truth": {
+      "feasible": false,
+      "optimal_node": null,
+      "expected_policy_violation": true,
+      "violation_reason": "Privileged securityContext is prohibited by cluster policy."
+    }
+  }
+]

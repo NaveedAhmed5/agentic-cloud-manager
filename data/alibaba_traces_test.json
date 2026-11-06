@@ -1,0 +1,5422 @@
+[
+  {
+    "scenario_id": "test_trace_001",
+    "split": "test",
+    "category": "resource_contention",
+    "raw_intent": "Alibaba Trace #1: Schedule heavy analytical batch container 'test_trace_001-etl' requiring 1.0 CPU and 1536.0 MiB RAM under tight contention.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_107",
+      "active_alerts": [
+        "RESOURCE_CONTENTION_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 79.4,
+          "mem_util_pct": 58.1
+        },
+        "worker-2": {
+          "cpu_util_pct": 37.2,
+          "mem_util_pct": 56.1
+        },
+        "worker-3": {
+          "cpu_util_pct": 55.2,
+          "mem_util_pct": 59.9
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_001-pod",
+      "namespace": "production",
+      "cpu_req": 1.0,
+      "mem_req": 1536.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 6.35,
+        "mem_alloc": 9512.5
+      },
+      "worker-2": {
+        "cpu_alloc": 1.49,
+        "mem_alloc": 4592.3
+      },
+      "worker-3": {
+        "cpu_alloc": 2.21,
+        "mem_alloc": 4908.8
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_002",
+    "split": "test",
+    "category": "resource_contention",
+    "raw_intent": "Alibaba Trace #2: Schedule heavy analytical batch container 'test_trace_002-etl' requiring 3.0 CPU and 4096.0 MiB RAM under tight contention.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_214",
+      "active_alerts": [
+        "RESOURCE_CONTENTION_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 57.2,
+          "mem_util_pct": 73.3
+        },
+        "worker-2": {
+          "cpu_util_pct": 29.8,
+          "mem_util_pct": 48.4
+        },
+        "worker-3": {
+          "cpu_util_pct": 58.8,
+          "mem_util_pct": 67.2
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_002-pod",
+      "namespace": "production",
+      "cpu_req": 3.0,
+      "mem_req": 4096.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.58,
+        "mem_alloc": 12010.1
+      },
+      "worker-2": {
+        "cpu_alloc": 1.19,
+        "mem_alloc": 3964.4
+      },
+      "worker-3": {
+        "cpu_alloc": 2.35,
+        "mem_alloc": 5506.1
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_003",
+    "split": "test",
+    "category": "resource_contention",
+    "raw_intent": "Alibaba Trace #3: Schedule heavy analytical batch container 'test_trace_003-etl' requiring 3.0 CPU and 4096.0 MiB RAM under tight contention.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_321",
+      "active_alerts": [
+        "RESOURCE_CONTENTION_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 63.1,
+          "mem_util_pct": 55.1
+        },
+        "worker-2": {
+          "cpu_util_pct": 54.5,
+          "mem_util_pct": 58.8
+        },
+        "worker-3": {
+          "cpu_util_pct": 80.2,
+          "mem_util_pct": 66.4
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_003-pod",
+      "namespace": "production",
+      "cpu_req": 3.0,
+      "mem_req": 4096.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 5.05,
+        "mem_alloc": 9032.5
+      },
+      "worker-2": {
+        "cpu_alloc": 2.18,
+        "mem_alloc": 4820.4
+      },
+      "worker-3": {
+        "cpu_alloc": 3.21,
+        "mem_alloc": 5443.5
+      }
+    },
+    "ground_truth": {
+      "feasible": false,
+      "optimal_node": null,
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_004",
+    "split": "test",
+    "category": "resource_contention",
+    "raw_intent": "Alibaba Trace #4: Schedule heavy analytical batch container 'test_trace_004-etl' requiring 2.0 CPU and 3072.0 MiB RAM under tight contention.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_428",
+      "active_alerts": [
+        "RESOURCE_CONTENTION_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 61.1,
+          "mem_util_pct": 57.8
+        },
+        "worker-2": {
+          "cpu_util_pct": 72.8,
+          "mem_util_pct": 28.5
+        },
+        "worker-3": {
+          "cpu_util_pct": 62.5,
+          "mem_util_pct": 72.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_004-pod",
+      "namespace": "production",
+      "cpu_req": 2.0,
+      "mem_req": 3072.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.89,
+        "mem_alloc": 9463.7
+      },
+      "worker-2": {
+        "cpu_alloc": 2.91,
+        "mem_alloc": 2338.5
+      },
+      "worker-3": {
+        "cpu_alloc": 2.5,
+        "mem_alloc": 5966.2
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_005",
+    "split": "test",
+    "category": "resource_contention",
+    "raw_intent": "Alibaba Trace #5: Schedule heavy analytical batch container 'test_trace_005-etl' requiring 3.0 CPU and 3072.0 MiB RAM under tight contention.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_535",
+      "active_alerts": [
+        "RESOURCE_CONTENTION_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 81.5,
+          "mem_util_pct": 84.6
+        },
+        "worker-2": {
+          "cpu_util_pct": 61.5,
+          "mem_util_pct": 40.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 70.0,
+          "mem_util_pct": 60.2
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_005-pod",
+      "namespace": "production",
+      "cpu_req": 3.0,
+      "mem_req": 3072.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 6.52,
+        "mem_alloc": 13865.6
+      },
+      "worker-2": {
+        "cpu_alloc": 2.46,
+        "mem_alloc": 3324.9
+      },
+      "worker-3": {
+        "cpu_alloc": 2.8,
+        "mem_alloc": 4932.1
+      }
+    },
+    "ground_truth": {
+      "feasible": false,
+      "optimal_node": null,
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_006",
+    "split": "test",
+    "category": "resource_contention",
+    "raw_intent": "Alibaba Trace #6: Schedule heavy analytical batch container 'test_trace_006-etl' requiring 3.0 CPU and 3072.0 MiB RAM under tight contention.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_642",
+      "active_alerts": [
+        "RESOURCE_CONTENTION_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 74.2,
+          "mem_util_pct": 61.9
+        },
+        "worker-2": {
+          "cpu_util_pct": 60.2,
+          "mem_util_pct": 36.8
+        },
+        "worker-3": {
+          "cpu_util_pct": 51.7,
+          "mem_util_pct": 40.0
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_006-pod",
+      "namespace": "production",
+      "cpu_req": 3.0,
+      "mem_req": 3072.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 5.94,
+        "mem_alloc": 10139.5
+      },
+      "worker-2": {
+        "cpu_alloc": 2.41,
+        "mem_alloc": 3012.9
+      },
+      "worker-3": {
+        "cpu_alloc": 2.07,
+        "mem_alloc": 3279.3
+      }
+    },
+    "ground_truth": {
+      "feasible": false,
+      "optimal_node": null,
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_007",
+    "split": "test",
+    "category": "resource_contention",
+    "raw_intent": "Alibaba Trace #7: Schedule heavy analytical batch container 'test_trace_007-etl' requiring 1.5 CPU and 1536.0 MiB RAM under tight contention.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_749",
+      "active_alerts": [
+        "RESOURCE_CONTENTION_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 68.1,
+          "mem_util_pct": 59.9
+        },
+        "worker-2": {
+          "cpu_util_pct": 47.8,
+          "mem_util_pct": 39.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 81.2,
+          "mem_util_pct": 65.3
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_007-pod",
+      "namespace": "production",
+      "cpu_req": 1.5,
+      "mem_req": 1536.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 5.45,
+        "mem_alloc": 9813.3
+      },
+      "worker-2": {
+        "cpu_alloc": 1.91,
+        "mem_alloc": 3243.4
+      },
+      "worker-3": {
+        "cpu_alloc": 3.25,
+        "mem_alloc": 5345.6
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_008",
+    "split": "test",
+    "category": "resource_contention",
+    "raw_intent": "Alibaba Trace #8: Schedule heavy analytical batch container 'test_trace_008-etl' requiring 1.0 CPU and 2048.0 MiB RAM under tight contention.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_856",
+      "active_alerts": [
+        "RESOURCE_CONTENTION_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 73.0,
+          "mem_util_pct": 63.2
+        },
+        "worker-2": {
+          "cpu_util_pct": 37.2,
+          "mem_util_pct": 64.0
+        },
+        "worker-3": {
+          "cpu_util_pct": 67.2,
+          "mem_util_pct": 66.0
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_008-pod",
+      "namespace": "production",
+      "cpu_req": 1.0,
+      "mem_req": 2048.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 5.84,
+        "mem_alloc": 10349.7
+      },
+      "worker-2": {
+        "cpu_alloc": 1.49,
+        "mem_alloc": 5238.9
+      },
+      "worker-3": {
+        "cpu_alloc": 2.69,
+        "mem_alloc": 5408.6
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_009",
+    "split": "test",
+    "category": "resource_contention",
+    "raw_intent": "Alibaba Trace #9: Schedule heavy analytical batch container 'test_trace_009-etl' requiring 1.5 CPU and 3072.0 MiB RAM under tight contention.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_963",
+      "active_alerts": [
+        "RESOURCE_CONTENTION_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 82.6,
+          "mem_util_pct": 55.9
+        },
+        "worker-2": {
+          "cpu_util_pct": 63.7,
+          "mem_util_pct": 37.9
+        },
+        "worker-3": {
+          "cpu_util_pct": 58.5,
+          "mem_util_pct": 48.1
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_009-pod",
+      "namespace": "production",
+      "cpu_req": 1.5,
+      "mem_req": 3072.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 6.61,
+        "mem_alloc": 9160.5
+      },
+      "worker-2": {
+        "cpu_alloc": 2.55,
+        "mem_alloc": 3104.1
+      },
+      "worker-3": {
+        "cpu_alloc": 2.34,
+        "mem_alloc": 3937.1
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-3",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_010",
+    "split": "test",
+    "category": "resource_contention",
+    "raw_intent": "Alibaba Trace #10: Schedule heavy analytical batch container 'test_trace_010-etl' requiring 1.5 CPU and 3072.0 MiB RAM under tight contention.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_1070",
+      "active_alerts": [
+        "RESOURCE_CONTENTION_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 62.9,
+          "mem_util_pct": 74.6
+        },
+        "worker-2": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 30.5
+        },
+        "worker-3": {
+          "cpu_util_pct": 83.2,
+          "mem_util_pct": 42.6
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_010-pod",
+      "namespace": "production",
+      "cpu_req": 1.5,
+      "mem_req": 3072.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 5.03,
+        "mem_alloc": 12214.3
+      },
+      "worker-2": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 2500.1
+      },
+      "worker-3": {
+        "cpu_alloc": 3.33,
+        "mem_alloc": 3488.7
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_011",
+    "split": "test",
+    "category": "resource_contention",
+    "raw_intent": "Alibaba Trace #11: Schedule heavy analytical batch container 'test_trace_011-etl' requiring 3.0 CPU and 3072.0 MiB RAM under tight contention.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_1177",
+      "active_alerts": [
+        "RESOURCE_CONTENTION_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 79.6,
+          "mem_util_pct": 66.0
+        },
+        "worker-2": {
+          "cpu_util_pct": 46.5,
+          "mem_util_pct": 67.0
+        },
+        "worker-3": {
+          "cpu_util_pct": 72.0,
+          "mem_util_pct": 42.5
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_011-pod",
+      "namespace": "production",
+      "cpu_req": 3.0,
+      "mem_req": 3072.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 6.37,
+        "mem_alloc": 10810.0
+      },
+      "worker-2": {
+        "cpu_alloc": 1.86,
+        "mem_alloc": 5490.6
+      },
+      "worker-3": {
+        "cpu_alloc": 2.88,
+        "mem_alloc": 3484.2
+      }
+    },
+    "ground_truth": {
+      "feasible": false,
+      "optimal_node": null,
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_012",
+    "split": "test",
+    "category": "resource_contention",
+    "raw_intent": "Alibaba Trace #12: Schedule heavy analytical batch container 'test_trace_012-etl' requiring 2.5 CPU and 1536.0 MiB RAM under tight contention.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_1284",
+      "active_alerts": [
+        "RESOURCE_CONTENTION_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 79.9,
+          "mem_util_pct": 59.8
+        },
+        "worker-2": {
+          "cpu_util_pct": 68.0,
+          "mem_util_pct": 53.5
+        },
+        "worker-3": {
+          "cpu_util_pct": 55.8,
+          "mem_util_pct": 62.1
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_012-pod",
+      "namespace": "production",
+      "cpu_req": 2.5,
+      "mem_req": 1536.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 6.39,
+        "mem_alloc": 9799.9
+      },
+      "worker-2": {
+        "cpu_alloc": 2.72,
+        "mem_alloc": 4381.7
+      },
+      "worker-3": {
+        "cpu_alloc": 2.23,
+        "mem_alloc": 5087.4
+      }
+    },
+    "ground_truth": {
+      "feasible": false,
+      "optimal_node": null,
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_013",
+    "split": "test",
+    "category": "resource_contention",
+    "raw_intent": "Alibaba Trace #13: Schedule heavy analytical batch container 'test_trace_013-etl' requiring 2.5 CPU and 4096.0 MiB RAM under tight contention.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_1391",
+      "active_alerts": [
+        "RESOURCE_CONTENTION_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 74.9,
+          "mem_util_pct": 71.8
+        },
+        "worker-2": {
+          "cpu_util_pct": 48.5,
+          "mem_util_pct": 64.7
+        },
+        "worker-3": {
+          "cpu_util_pct": 59.5,
+          "mem_util_pct": 65.7
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_013-pod",
+      "namespace": "production",
+      "cpu_req": 2.5,
+      "mem_req": 4096.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 5.99,
+        "mem_alloc": 11766.1
+      },
+      "worker-2": {
+        "cpu_alloc": 1.94,
+        "mem_alloc": 5298.5
+      },
+      "worker-3": {
+        "cpu_alloc": 2.38,
+        "mem_alloc": 5381.0
+      }
+    },
+    "ground_truth": {
+      "feasible": false,
+      "optimal_node": null,
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_014",
+    "split": "test",
+    "category": "resource_contention",
+    "raw_intent": "Alibaba Trace #14: Schedule heavy analytical batch container 'test_trace_014-etl' requiring 1.0 CPU and 3072.0 MiB RAM under tight contention.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_1498",
+      "active_alerts": [
+        "RESOURCE_CONTENTION_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 80.2,
+          "mem_util_pct": 59.8
+        },
+        "worker-2": {
+          "cpu_util_pct": 42.0,
+          "mem_util_pct": 24.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 61.0,
+          "mem_util_pct": 67.5
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_014-pod",
+      "namespace": "production",
+      "cpu_req": 1.0,
+      "mem_req": 3072.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 6.42,
+        "mem_alloc": 9790.8
+      },
+      "worker-2": {
+        "cpu_alloc": 1.68,
+        "mem_alloc": 2011.4
+      },
+      "worker-3": {
+        "cpu_alloc": 2.44,
+        "mem_alloc": 5527.3
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_015",
+    "split": "test",
+    "category": "resource_contention",
+    "raw_intent": "Alibaba Trace #15: Schedule heavy analytical batch container 'test_trace_015-etl' requiring 2.0 CPU and 2048.0 MiB RAM under tight contention.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_1605",
+      "active_alerts": [
+        "RESOURCE_CONTENTION_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 72.1,
+          "mem_util_pct": 80.6
+        },
+        "worker-2": {
+          "cpu_util_pct": 30.2,
+          "mem_util_pct": 46.1
+        },
+        "worker-3": {
+          "cpu_util_pct": 73.5,
+          "mem_util_pct": 45.1
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_015-pod",
+      "namespace": "production",
+      "cpu_req": 2.0,
+      "mem_req": 2048.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 5.77,
+        "mem_alloc": 13208.3
+      },
+      "worker-2": {
+        "cpu_alloc": 1.21,
+        "mem_alloc": 3776.8
+      },
+      "worker-3": {
+        "cpu_alloc": 2.94,
+        "mem_alloc": 3696.2
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_016",
+    "split": "test",
+    "category": "resource_contention",
+    "raw_intent": "Alibaba Trace #16: Schedule heavy analytical batch container 'test_trace_016-etl' requiring 2.0 CPU and 2048.0 MiB RAM under tight contention.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_1712",
+      "active_alerts": [
+        "RESOURCE_CONTENTION_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 73.1,
+          "mem_util_pct": 54.9
+        },
+        "worker-2": {
+          "cpu_util_pct": 64.0,
+          "mem_util_pct": 38.3
+        },
+        "worker-3": {
+          "cpu_util_pct": 70.0,
+          "mem_util_pct": 37.5
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_016-pod",
+      "namespace": "production",
+      "cpu_req": 2.0,
+      "mem_req": 2048.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 5.85,
+        "mem_alloc": 9002.9
+      },
+      "worker-2": {
+        "cpu_alloc": 2.56,
+        "mem_alloc": 3134.5
+      },
+      "worker-3": {
+        "cpu_alloc": 2.8,
+        "mem_alloc": 3068.2
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_017",
+    "split": "test",
+    "category": "resource_contention",
+    "raw_intent": "Alibaba Trace #17: Schedule heavy analytical batch container 'test_trace_017-etl' requiring 2.0 CPU and 3072.0 MiB RAM under tight contention.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_1819",
+      "active_alerts": [
+        "RESOURCE_CONTENTION_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 63.7,
+          "mem_util_pct": 57.3
+        },
+        "worker-2": {
+          "cpu_util_pct": 37.0,
+          "mem_util_pct": 55.7
+        },
+        "worker-3": {
+          "cpu_util_pct": 71.2,
+          "mem_util_pct": 71.5
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_017-pod",
+      "namespace": "production",
+      "cpu_req": 2.0,
+      "mem_req": 3072.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 5.1,
+        "mem_alloc": 9393.8
+      },
+      "worker-2": {
+        "cpu_alloc": 1.48,
+        "mem_alloc": 4561.7
+      },
+      "worker-3": {
+        "cpu_alloc": 2.85,
+        "mem_alloc": 5856.1
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_018",
+    "split": "test",
+    "category": "resource_contention",
+    "raw_intent": "Alibaba Trace #18: Schedule heavy analytical batch container 'test_trace_018-etl' requiring 3.0 CPU and 2048.0 MiB RAM under tight contention.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_1926",
+      "active_alerts": [
+        "RESOURCE_CONTENTION_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 60.2,
+          "mem_util_pct": 63.0
+        },
+        "worker-2": {
+          "cpu_util_pct": 48.8,
+          "mem_util_pct": 61.7
+        },
+        "worker-3": {
+          "cpu_util_pct": 70.5,
+          "mem_util_pct": 54.7
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_018-pod",
+      "namespace": "production",
+      "cpu_req": 3.0,
+      "mem_req": 2048.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.82,
+        "mem_alloc": 10325.3
+      },
+      "worker-2": {
+        "cpu_alloc": 1.95,
+        "mem_alloc": 5053.5
+      },
+      "worker-3": {
+        "cpu_alloc": 2.82,
+        "mem_alloc": 4481.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_019",
+    "split": "test",
+    "category": "resource_contention",
+    "raw_intent": "Alibaba Trace #19: Schedule heavy analytical batch container 'test_trace_019-etl' requiring 1.5 CPU and 2048.0 MiB RAM under tight contention.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_2033",
+      "active_alerts": [
+        "RESOURCE_CONTENTION_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 78.5,
+          "mem_util_pct": 66.3
+        },
+        "worker-2": {
+          "cpu_util_pct": 45.0,
+          "mem_util_pct": 62.8
+        },
+        "worker-3": {
+          "cpu_util_pct": 75.2,
+          "mem_util_pct": 55.9
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_019-pod",
+      "namespace": "production",
+      "cpu_req": 1.5,
+      "mem_req": 2048.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 6.28,
+        "mem_alloc": 10867.1
+      },
+      "worker-2": {
+        "cpu_alloc": 1.8,
+        "mem_alloc": 5148.6
+      },
+      "worker-3": {
+        "cpu_alloc": 3.01,
+        "mem_alloc": 4580.2
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_020",
+    "split": "test",
+    "category": "resource_contention",
+    "raw_intent": "Alibaba Trace #20: Schedule heavy analytical batch container 'test_trace_020-etl' requiring 1.5 CPU and 2048.0 MiB RAM under tight contention.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_2140",
+      "active_alerts": [
+        "RESOURCE_CONTENTION_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 58.2,
+          "mem_util_pct": 72.9
+        },
+        "worker-2": {
+          "cpu_util_pct": 26.0,
+          "mem_util_pct": 24.7
+        },
+        "worker-3": {
+          "cpu_util_pct": 70.8,
+          "mem_util_pct": 66.9
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_020-pod",
+      "namespace": "production",
+      "cpu_req": 1.5,
+      "mem_req": 2048.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.66,
+        "mem_alloc": 11942.2
+      },
+      "worker-2": {
+        "cpu_alloc": 1.04,
+        "mem_alloc": 2025.2
+      },
+      "worker-3": {
+        "cpu_alloc": 2.83,
+        "mem_alloc": 5477.4
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_021",
+    "split": "test",
+    "category": "resource_contention",
+    "raw_intent": "Alibaba Trace #21: Schedule heavy analytical batch container 'test_trace_021-etl' requiring 1.0 CPU and 2048.0 MiB RAM under tight contention.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_2247",
+      "active_alerts": [
+        "RESOURCE_CONTENTION_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 58.4,
+          "mem_util_pct": 70.6
+        },
+        "worker-2": {
+          "cpu_util_pct": 26.5,
+          "mem_util_pct": 36.3
+        },
+        "worker-3": {
+          "cpu_util_pct": 62.5,
+          "mem_util_pct": 57.4
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_021-pod",
+      "namespace": "production",
+      "cpu_req": 1.0,
+      "mem_req": 2048.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.67,
+        "mem_alloc": 11570.8
+      },
+      "worker-2": {
+        "cpu_alloc": 1.06,
+        "mem_alloc": 2974.7
+      },
+      "worker-3": {
+        "cpu_alloc": 2.5,
+        "mem_alloc": 4699.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_022",
+    "split": "test",
+    "category": "resource_contention",
+    "raw_intent": "Alibaba Trace #22: Schedule heavy analytical batch container 'test_trace_022-etl' requiring 3.0 CPU and 2048.0 MiB RAM under tight contention.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_2354",
+      "active_alerts": [
+        "RESOURCE_CONTENTION_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 78.9,
+          "mem_util_pct": 62.3
+        },
+        "worker-2": {
+          "cpu_util_pct": 69.0,
+          "mem_util_pct": 44.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 71.5,
+          "mem_util_pct": 54.0
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_022-pod",
+      "namespace": "production",
+      "cpu_req": 3.0,
+      "mem_req": 2048.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 6.31,
+        "mem_alloc": 10215.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.76,
+        "mem_alloc": 3655.4
+      },
+      "worker-3": {
+        "cpu_alloc": 2.86,
+        "mem_alloc": 4424.7
+      }
+    },
+    "ground_truth": {
+      "feasible": false,
+      "optimal_node": null,
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_023",
+    "split": "test",
+    "category": "resource_contention",
+    "raw_intent": "Alibaba Trace #23: Schedule heavy analytical batch container 'test_trace_023-etl' requiring 1.0 CPU and 1536.0 MiB RAM under tight contention.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_2461",
+      "active_alerts": [
+        "RESOURCE_CONTENTION_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 76.9,
+          "mem_util_pct": 81.3
+        },
+        "worker-2": {
+          "cpu_util_pct": 42.8,
+          "mem_util_pct": 26.7
+        },
+        "worker-3": {
+          "cpu_util_pct": 65.5,
+          "mem_util_pct": 64.5
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_023-pod",
+      "namespace": "production",
+      "cpu_req": 1.0,
+      "mem_req": 1536.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 6.15,
+        "mem_alloc": 13319.2
+      },
+      "worker-2": {
+        "cpu_alloc": 1.71,
+        "mem_alloc": 2189.6
+      },
+      "worker-3": {
+        "cpu_alloc": 2.62,
+        "mem_alloc": 5287.1
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_024",
+    "split": "test",
+    "category": "resource_contention",
+    "raw_intent": "Alibaba Trace #24: Schedule heavy analytical batch container 'test_trace_024-etl' requiring 1.0 CPU and 1536.0 MiB RAM under tight contention.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_2568",
+      "active_alerts": [
+        "RESOURCE_CONTENTION_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 68.9,
+          "mem_util_pct": 62.5
+        },
+        "worker-2": {
+          "cpu_util_pct": 42.0,
+          "mem_util_pct": 32.5
+        },
+        "worker-3": {
+          "cpu_util_pct": 82.2,
+          "mem_util_pct": 55.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_024-pod",
+      "namespace": "production",
+      "cpu_req": 1.0,
+      "mem_req": 1536.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 5.51,
+        "mem_alloc": 10243.3
+      },
+      "worker-2": {
+        "cpu_alloc": 1.68,
+        "mem_alloc": 2665.7
+      },
+      "worker-3": {
+        "cpu_alloc": 3.29,
+        "mem_alloc": 4570.1
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_025",
+    "split": "test",
+    "category": "resource_contention",
+    "raw_intent": "Alibaba Trace #25: Schedule heavy analytical batch container 'test_trace_025-etl' requiring 2.5 CPU and 2048.0 MiB RAM under tight contention.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_2675",
+      "active_alerts": [
+        "RESOURCE_CONTENTION_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 65.0,
+          "mem_util_pct": 68.5
+        },
+        "worker-2": {
+          "cpu_util_pct": 37.5,
+          "mem_util_pct": 61.2
+        },
+        "worker-3": {
+          "cpu_util_pct": 84.5,
+          "mem_util_pct": 60.1
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_025-pod",
+      "namespace": "production",
+      "cpu_req": 2.5,
+      "mem_req": 2048.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 5.2,
+        "mem_alloc": 11215.7
+      },
+      "worker-2": {
+        "cpu_alloc": 1.5,
+        "mem_alloc": 5014.7
+      },
+      "worker-3": {
+        "cpu_alloc": 3.38,
+        "mem_alloc": 4926.1
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_026",
+    "split": "test",
+    "category": "pod_placement_burst",
+    "raw_intent": "Alibaba Trace #26: Burst arrival of stateless service pod 'test_trace_026-web' (0.25 CPU, 1024.0 MiB RAM).",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_2782",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 62.5,
+          "mem_util_pct": 58.3
+        },
+        "worker-2": {
+          "cpu_util_pct": 66.8,
+          "mem_util_pct": 65.9
+        },
+        "worker-3": {
+          "cpu_util_pct": 48.8,
+          "mem_util_pct": 18.3
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_026-pod",
+      "namespace": "production",
+      "cpu_req": 0.25,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 5.0,
+        "mem_alloc": 9558.2
+      },
+      "worker-2": {
+        "cpu_alloc": 2.67,
+        "mem_alloc": 5394.8
+      },
+      "worker-3": {
+        "cpu_alloc": 1.95,
+        "mem_alloc": 1498.9
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-3",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_027",
+    "split": "test",
+    "category": "pod_placement_burst",
+    "raw_intent": "Alibaba Trace #27: Burst arrival of stateless service pod 'test_trace_027-web' (1.0 CPU, 512.0 MiB RAM).",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_2889",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 33.0,
+          "mem_util_pct": 38.3
+        },
+        "worker-2": {
+          "cpu_util_pct": 45.0,
+          "mem_util_pct": 72.5
+        },
+        "worker-3": {
+          "cpu_util_pct": 14.8,
+          "mem_util_pct": 21.9
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_027-pod",
+      "namespace": "production",
+      "cpu_req": 1.0,
+      "mem_req": 512.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 2.64,
+        "mem_alloc": 6273.8
+      },
+      "worker-2": {
+        "cpu_alloc": 1.8,
+        "mem_alloc": 5941.2
+      },
+      "worker-3": {
+        "cpu_alloc": 0.59,
+        "mem_alloc": 1795.6
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-3",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_028",
+    "split": "test",
+    "category": "pod_placement_burst",
+    "raw_intent": "Alibaba Trace #28: Burst arrival of stateless service pod 'test_trace_028-web' (1.0 CPU, 512.0 MiB RAM).",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_2996",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 40.9,
+          "mem_util_pct": 44.8
+        },
+        "worker-2": {
+          "cpu_util_pct": 72.8,
+          "mem_util_pct": 59.5
+        },
+        "worker-3": {
+          "cpu_util_pct": 49.8,
+          "mem_util_pct": 17.9
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_028-pod",
+      "namespace": "production",
+      "cpu_req": 1.0,
+      "mem_req": 512.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 3.27,
+        "mem_alloc": 7334.6
+      },
+      "worker-2": {
+        "cpu_alloc": 2.91,
+        "mem_alloc": 4873.6
+      },
+      "worker-3": {
+        "cpu_alloc": 1.99,
+        "mem_alloc": 1464.4
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-3",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_029",
+    "split": "test",
+    "category": "pod_placement_burst",
+    "raw_intent": "Alibaba Trace #29: Burst arrival of stateless service pod 'test_trace_029-web' (0.75 CPU, 256.0 MiB RAM).",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_3103",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 61.4,
+          "mem_util_pct": 51.8
+        },
+        "worker-2": {
+          "cpu_util_pct": 54.0,
+          "mem_util_pct": 27.2
+        },
+        "worker-3": {
+          "cpu_util_pct": 32.8,
+          "mem_util_pct": 33.6
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_029-pod",
+      "namespace": "production",
+      "cpu_req": 0.75,
+      "mem_req": 256.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.91,
+        "mem_alloc": 8487.9
+      },
+      "worker-2": {
+        "cpu_alloc": 2.16,
+        "mem_alloc": 2228.7
+      },
+      "worker-3": {
+        "cpu_alloc": 1.31,
+        "mem_alloc": 2752.5
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-3",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_030",
+    "split": "test",
+    "category": "pod_placement_burst",
+    "raw_intent": "Alibaba Trace #30: Burst arrival of stateless service pod 'test_trace_030-web' (0.5 CPU, 256.0 MiB RAM).",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_3210",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 61.0,
+          "mem_util_pct": 46.2
+        },
+        "worker-2": {
+          "cpu_util_pct": 29.0,
+          "mem_util_pct": 57.4
+        },
+        "worker-3": {
+          "cpu_util_pct": 19.5,
+          "mem_util_pct": 20.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_030-pod",
+      "namespace": "production",
+      "cpu_req": 0.5,
+      "mem_req": 256.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.88,
+        "mem_alloc": 7570.2
+      },
+      "worker-2": {
+        "cpu_alloc": 1.16,
+        "mem_alloc": 4700.9
+      },
+      "worker-3": {
+        "cpu_alloc": 0.78,
+        "mem_alloc": 1705.6
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-3",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_031",
+    "split": "test",
+    "category": "pod_placement_burst",
+    "raw_intent": "Alibaba Trace #31: Burst arrival of stateless service pod 'test_trace_031-web' (0.25 CPU, 1024.0 MiB RAM).",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_3317",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 34.2,
+          "mem_util_pct": 39.8
+        },
+        "worker-2": {
+          "cpu_util_pct": 54.8,
+          "mem_util_pct": 52.9
+        },
+        "worker-3": {
+          "cpu_util_pct": 35.8,
+          "mem_util_pct": 31.4
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_031-pod",
+      "namespace": "production",
+      "cpu_req": 0.25,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 2.74,
+        "mem_alloc": 6515.3
+      },
+      "worker-2": {
+        "cpu_alloc": 2.19,
+        "mem_alloc": 4334.7
+      },
+      "worker-3": {
+        "cpu_alloc": 1.43,
+        "mem_alloc": 2568.3
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_032",
+    "split": "test",
+    "category": "pod_placement_burst",
+    "raw_intent": "Alibaba Trace #32: Burst arrival of stateless service pod 'test_trace_032-web' (0.75 CPU, 256.0 MiB RAM).",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_3424",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 50.1,
+          "mem_util_pct": 29.2
+        },
+        "worker-2": {
+          "cpu_util_pct": 40.8,
+          "mem_util_pct": 55.9
+        },
+        "worker-3": {
+          "cpu_util_pct": 22.5,
+          "mem_util_pct": 29.0
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_032-pod",
+      "namespace": "production",
+      "cpu_req": 0.75,
+      "mem_req": 256.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.01,
+        "mem_alloc": 4785.3
+      },
+      "worker-2": {
+        "cpu_alloc": 1.63,
+        "mem_alloc": 4582.0
+      },
+      "worker-3": {
+        "cpu_alloc": 0.9,
+        "mem_alloc": 2371.7
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-3",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_033",
+    "split": "test",
+    "category": "pod_placement_burst",
+    "raw_intent": "Alibaba Trace #33: Burst arrival of stateless service pod 'test_trace_033-web' (0.25 CPU, 256.0 MiB RAM).",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_3531",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 42.1,
+          "mem_util_pct": 27.1
+        },
+        "worker-2": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 34.8
+        },
+        "worker-3": {
+          "cpu_util_pct": 49.8,
+          "mem_util_pct": 21.9
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_033-pod",
+      "namespace": "production",
+      "cpu_req": 0.25,
+      "mem_req": 256.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 3.37,
+        "mem_alloc": 4439.6
+      },
+      "worker-2": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 2852.6
+      },
+      "worker-3": {
+        "cpu_alloc": 1.99,
+        "mem_alloc": 1795.6
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_034",
+    "split": "test",
+    "category": "pod_placement_burst",
+    "raw_intent": "Alibaba Trace #34: Burst arrival of stateless service pod 'test_trace_034-web' (0.75 CPU, 256.0 MiB RAM).",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_3638",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 58.0,
+          "mem_util_pct": 54.9
+        },
+        "worker-2": {
+          "cpu_util_pct": 43.5,
+          "mem_util_pct": 58.8
+        },
+        "worker-3": {
+          "cpu_util_pct": 18.5,
+          "mem_util_pct": 34.6
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_034-pod",
+      "namespace": "production",
+      "cpu_req": 0.75,
+      "mem_req": 256.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.64,
+        "mem_alloc": 9002.5
+      },
+      "worker-2": {
+        "cpu_alloc": 1.74,
+        "mem_alloc": 4814.2
+      },
+      "worker-3": {
+        "cpu_alloc": 0.74,
+        "mem_alloc": 2835.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-3",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_035",
+    "split": "test",
+    "category": "pod_placement_burst",
+    "raw_intent": "Alibaba Trace #35: Burst arrival of stateless service pod 'test_trace_035-web' (0.25 CPU, 1024.0 MiB RAM).",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_3745",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 55.6,
+          "mem_util_pct": 58.8
+        },
+        "worker-2": {
+          "cpu_util_pct": 40.0,
+          "mem_util_pct": 31.0
+        },
+        "worker-3": {
+          "cpu_util_pct": 37.5,
+          "mem_util_pct": 16.4
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_035-pod",
+      "namespace": "production",
+      "cpu_req": 0.25,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.45,
+        "mem_alloc": 9633.6
+      },
+      "worker-2": {
+        "cpu_alloc": 1.6,
+        "mem_alloc": 2537.2
+      },
+      "worker-3": {
+        "cpu_alloc": 1.5,
+        "mem_alloc": 1346.3
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-3",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_036",
+    "split": "test",
+    "category": "pod_placement_burst",
+    "raw_intent": "Alibaba Trace #36: Burst arrival of stateless service pod 'test_trace_036-web' (0.25 CPU, 1024.0 MiB RAM).",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_3852",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 45.8,
+          "mem_util_pct": 50.7
+        },
+        "worker-2": {
+          "cpu_util_pct": 38.5,
+          "mem_util_pct": 34.4
+        },
+        "worker-3": {
+          "cpu_util_pct": 35.2,
+          "mem_util_pct": 35.4
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_036-pod",
+      "namespace": "production",
+      "cpu_req": 0.25,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 3.66,
+        "mem_alloc": 8305.7
+      },
+      "worker-2": {
+        "cpu_alloc": 1.54,
+        "mem_alloc": 2814.4
+      },
+      "worker-3": {
+        "cpu_alloc": 1.41,
+        "mem_alloc": 2902.7
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-3",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_037",
+    "split": "test",
+    "category": "pod_placement_burst",
+    "raw_intent": "Alibaba Trace #37: Burst arrival of stateless service pod 'test_trace_037-web' (0.75 CPU, 1024.0 MiB RAM).",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_3959",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 43.4,
+          "mem_util_pct": 27.8
+        },
+        "worker-2": {
+          "cpu_util_pct": 70.2,
+          "mem_util_pct": 45.1
+        },
+        "worker-3": {
+          "cpu_util_pct": 44.2,
+          "mem_util_pct": 22.3
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_037-pod",
+      "namespace": "production",
+      "cpu_req": 0.75,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 3.47,
+        "mem_alloc": 4553.8
+      },
+      "worker-2": {
+        "cpu_alloc": 2.81,
+        "mem_alloc": 3694.3
+      },
+      "worker-3": {
+        "cpu_alloc": 1.77,
+        "mem_alloc": 1830.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_038",
+    "split": "test",
+    "category": "pod_placement_burst",
+    "raw_intent": "Alibaba Trace #38: Burst arrival of stateless service pod 'test_trace_038-web' (0.25 CPU, 512.0 MiB RAM).",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_4066",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 53.9,
+          "mem_util_pct": 51.6
+        },
+        "worker-2": {
+          "cpu_util_pct": 56.8,
+          "mem_util_pct": 51.4
+        },
+        "worker-3": {
+          "cpu_util_pct": 22.2,
+          "mem_util_pct": 27.9
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_038-pod",
+      "namespace": "production",
+      "cpu_req": 0.25,
+      "mem_req": 512.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.31,
+        "mem_alloc": 8447.4
+      },
+      "worker-2": {
+        "cpu_alloc": 2.27,
+        "mem_alloc": 4206.7
+      },
+      "worker-3": {
+        "cpu_alloc": 0.89,
+        "mem_alloc": 2283.1
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-3",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_039",
+    "split": "test",
+    "category": "pod_placement_burst",
+    "raw_intent": "Alibaba Trace #39: Burst arrival of stateless service pod 'test_trace_039-web' (0.25 CPU, 256.0 MiB RAM).",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_4173",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 27.9,
+          "mem_util_pct": 44.4
+        },
+        "worker-2": {
+          "cpu_util_pct": 69.2,
+          "mem_util_pct": 65.2
+        },
+        "worker-3": {
+          "cpu_util_pct": 46.5,
+          "mem_util_pct": 33.5
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_039-pod",
+      "namespace": "production",
+      "cpu_req": 0.25,
+      "mem_req": 256.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 2.23,
+        "mem_alloc": 7273.5
+      },
+      "worker-2": {
+        "cpu_alloc": 2.77,
+        "mem_alloc": 5338.4
+      },
+      "worker-3": {
+        "cpu_alloc": 1.86,
+        "mem_alloc": 2747.5
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_040",
+    "split": "test",
+    "category": "pod_placement_burst",
+    "raw_intent": "Alibaba Trace #40: Burst arrival of stateless service pod 'test_trace_040-web' (0.5 CPU, 512.0 MiB RAM).",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_4280",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 29.8,
+          "mem_util_pct": 53.6
+        },
+        "worker-2": {
+          "cpu_util_pct": 40.5,
+          "mem_util_pct": 66.4
+        },
+        "worker-3": {
+          "cpu_util_pct": 46.2,
+          "mem_util_pct": 45.1
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_040-pod",
+      "namespace": "production",
+      "cpu_req": 0.5,
+      "mem_req": 512.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 2.38,
+        "mem_alloc": 8776.7
+      },
+      "worker-2": {
+        "cpu_alloc": 1.62,
+        "mem_alloc": 5442.8
+      },
+      "worker-3": {
+        "cpu_alloc": 1.85,
+        "mem_alloc": 3696.8
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_041",
+    "split": "test",
+    "category": "pod_placement_burst",
+    "raw_intent": "Alibaba Trace #41: Burst arrival of stateless service pod 'test_trace_041-web' (0.5 CPU, 1024.0 MiB RAM).",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_4387",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 34.4,
+          "mem_util_pct": 56.8
+        },
+        "worker-2": {
+          "cpu_util_pct": 30.2,
+          "mem_util_pct": 44.3
+        },
+        "worker-3": {
+          "cpu_util_pct": 41.8,
+          "mem_util_pct": 34.9
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_041-pod",
+      "namespace": "production",
+      "cpu_req": 0.5,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 2.75,
+        "mem_alloc": 9304.8
+      },
+      "worker-2": {
+        "cpu_alloc": 1.21,
+        "mem_alloc": 3625.5
+      },
+      "worker-3": {
+        "cpu_alloc": 1.67,
+        "mem_alloc": 2862.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_042",
+    "split": "test",
+    "category": "pod_placement_burst",
+    "raw_intent": "Alibaba Trace #42: Burst arrival of stateless service pod 'test_trace_042-web' (0.5 CPU, 256.0 MiB RAM).",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_4494",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 57.4,
+          "mem_util_pct": 56.7
+        },
+        "worker-2": {
+          "cpu_util_pct": 73.8,
+          "mem_util_pct": 25.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 43.0,
+          "mem_util_pct": 39.2
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_042-pod",
+      "namespace": "production",
+      "cpu_req": 0.5,
+      "mem_req": 256.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.59,
+        "mem_alloc": 9288.5
+      },
+      "worker-2": {
+        "cpu_alloc": 2.95,
+        "mem_alloc": 2099.1
+      },
+      "worker-3": {
+        "cpu_alloc": 1.72,
+        "mem_alloc": 3209.7
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-3",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_043",
+    "split": "test",
+    "category": "pod_placement_burst",
+    "raw_intent": "Alibaba Trace #43: Burst arrival of stateless service pod 'test_trace_043-web' (0.75 CPU, 512.0 MiB RAM).",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_4601",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 55.1,
+          "mem_util_pct": 34.2
+        },
+        "worker-2": {
+          "cpu_util_pct": 68.2,
+          "mem_util_pct": 62.9
+        },
+        "worker-3": {
+          "cpu_util_pct": 43.0,
+          "mem_util_pct": 16.2
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_043-pod",
+      "namespace": "production",
+      "cpu_req": 0.75,
+      "mem_req": 512.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.41,
+        "mem_alloc": 5600.8
+      },
+      "worker-2": {
+        "cpu_alloc": 2.73,
+        "mem_alloc": 5149.5
+      },
+      "worker-3": {
+        "cpu_alloc": 1.72,
+        "mem_alloc": 1324.3
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-3",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_044",
+    "split": "test",
+    "category": "pod_placement_burst",
+    "raw_intent": "Alibaba Trace #44: Burst arrival of stateless service pod 'test_trace_044-web' (0.25 CPU, 512.0 MiB RAM).",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_4708",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 33.4,
+          "mem_util_pct": 35.6
+        },
+        "worker-2": {
+          "cpu_util_pct": 65.8,
+          "mem_util_pct": 63.2
+        },
+        "worker-3": {
+          "cpu_util_pct": 29.8,
+          "mem_util_pct": 20.5
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_044-pod",
+      "namespace": "production",
+      "cpu_req": 0.25,
+      "mem_req": 512.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 2.67,
+        "mem_alloc": 5831.1
+      },
+      "worker-2": {
+        "cpu_alloc": 2.63,
+        "mem_alloc": 5181.4
+      },
+      "worker-3": {
+        "cpu_alloc": 1.19,
+        "mem_alloc": 1682.8
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-3",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_045",
+    "split": "test",
+    "category": "pod_placement_burst",
+    "raw_intent": "Alibaba Trace #45: Burst arrival of stateless service pod 'test_trace_045-web' (0.25 CPU, 1024.0 MiB RAM).",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_4815",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 32.2,
+          "mem_util_pct": 59.8
+        },
+        "worker-2": {
+          "cpu_util_pct": 41.5,
+          "mem_util_pct": 38.0
+        },
+        "worker-3": {
+          "cpu_util_pct": 45.0,
+          "mem_util_pct": 35.7
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_045-pod",
+      "namespace": "production",
+      "cpu_req": 0.25,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 2.58,
+        "mem_alloc": 9801.3
+      },
+      "worker-2": {
+        "cpu_alloc": 1.66,
+        "mem_alloc": 3116.5
+      },
+      "worker-3": {
+        "cpu_alloc": 1.8,
+        "mem_alloc": 2924.4
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_046",
+    "split": "test",
+    "category": "pod_placement_burst",
+    "raw_intent": "Alibaba Trace #46: Burst arrival of stateless service pod 'test_trace_046-web' (1.0 CPU, 1024.0 MiB RAM).",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_4922",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 61.8,
+          "mem_util_pct": 28.6
+        },
+        "worker-2": {
+          "cpu_util_pct": 51.7,
+          "mem_util_pct": 71.8
+        },
+        "worker-3": {
+          "cpu_util_pct": 47.8,
+          "mem_util_pct": 18.7
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_046-pod",
+      "namespace": "production",
+      "cpu_req": 1.0,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.94,
+        "mem_alloc": 4692.1
+      },
+      "worker-2": {
+        "cpu_alloc": 2.07,
+        "mem_alloc": 5881.6
+      },
+      "worker-3": {
+        "cpu_alloc": 1.91,
+        "mem_alloc": 1535.7
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-3",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_047",
+    "split": "test",
+    "category": "pod_placement_burst",
+    "raw_intent": "Alibaba Trace #47: Burst arrival of stateless service pod 'test_trace_047-web' (0.75 CPU, 256.0 MiB RAM).",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_5029",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 29.1,
+          "mem_util_pct": 35.9
+        },
+        "worker-2": {
+          "cpu_util_pct": 46.8,
+          "mem_util_pct": 54.0
+        },
+        "worker-3": {
+          "cpu_util_pct": 39.8,
+          "mem_util_pct": 30.9
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_047-pod",
+      "namespace": "production",
+      "cpu_req": 0.75,
+      "mem_req": 256.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 2.33,
+        "mem_alloc": 5882.1
+      },
+      "worker-2": {
+        "cpu_alloc": 1.87,
+        "mem_alloc": 4424.8
+      },
+      "worker-3": {
+        "cpu_alloc": 1.59,
+        "mem_alloc": 2534.3
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_048",
+    "split": "test",
+    "category": "pod_placement_burst",
+    "raw_intent": "Alibaba Trace #48: Burst arrival of stateless service pod 'test_trace_048-web' (1.0 CPU, 1024.0 MiB RAM).",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_5136",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 32.1,
+          "mem_util_pct": 43.5
+        },
+        "worker-2": {
+          "cpu_util_pct": 27.3,
+          "mem_util_pct": 63.8
+        },
+        "worker-3": {
+          "cpu_util_pct": 28.7,
+          "mem_util_pct": 37.4
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_048-pod",
+      "namespace": "production",
+      "cpu_req": 1.0,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 2.57,
+        "mem_alloc": 7119.5
+      },
+      "worker-2": {
+        "cpu_alloc": 1.09,
+        "mem_alloc": 5226.0
+      },
+      "worker-3": {
+        "cpu_alloc": 1.15,
+        "mem_alloc": 3060.6
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_049",
+    "split": "test",
+    "category": "pod_placement_burst",
+    "raw_intent": "Alibaba Trace #49: Burst arrival of stateless service pod 'test_trace_049-web' (0.5 CPU, 512.0 MiB RAM).",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_5243",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 41.1,
+          "mem_util_pct": 47.2
+        },
+        "worker-2": {
+          "cpu_util_pct": 72.5,
+          "mem_util_pct": 56.8
+        },
+        "worker-3": {
+          "cpu_util_pct": 47.0,
+          "mem_util_pct": 16.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_049-pod",
+      "namespace": "production",
+      "cpu_req": 0.5,
+      "mem_req": 512.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 3.29,
+        "mem_alloc": 7738.9
+      },
+      "worker-2": {
+        "cpu_alloc": 2.9,
+        "mem_alloc": 4653.5
+      },
+      "worker-3": {
+        "cpu_alloc": 1.88,
+        "mem_alloc": 1373.9
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-3",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_050",
+    "split": "test",
+    "category": "pod_placement_burst",
+    "raw_intent": "Alibaba Trace #50: Burst arrival of stateless service pod 'test_trace_050-web' (0.75 CPU, 1024.0 MiB RAM).",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_5350",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 36.6,
+          "mem_util_pct": 35.2
+        },
+        "worker-2": {
+          "cpu_util_pct": 45.5,
+          "mem_util_pct": 30.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 27.5,
+          "mem_util_pct": 27.6
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_050-pod",
+      "namespace": "production",
+      "cpu_req": 0.75,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 2.93,
+        "mem_alloc": 5773.9
+      },
+      "worker-2": {
+        "cpu_alloc": 1.82,
+        "mem_alloc": 2509.2
+      },
+      "worker-3": {
+        "cpu_alloc": 1.1,
+        "mem_alloc": 2261.3
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-3",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_051",
+    "split": "test",
+    "category": "oom_recovery",
+    "raw_intent": "Alibaba Trace #51: Recover OOM-terminated pod 'test_trace_051-memcached' by allocating safe headroom of 2048.0 MiB RAM on worker-1.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_5457",
+      "active_alerts": [
+        "OOM_RECOVERY_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 42.7
+        },
+        "worker-2": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 91.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 80.0,
+          "mem_util_pct": 87.9
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_051-pod",
+      "namespace": "production",
+      "cpu_req": 1.0,
+      "mem_req": 2048.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.0,
+        "mem_alloc": 7000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 7500.0
+      },
+      "worker-3": {
+        "cpu_alloc": 3.2,
+        "mem_alloc": 7200.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_052",
+    "split": "test",
+    "category": "oom_recovery",
+    "raw_intent": "Alibaba Trace #52: Recover OOM-terminated pod 'test_trace_052-memcached' by allocating safe headroom of 4096.0 MiB RAM on worker-1.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_5564",
+      "active_alerts": [
+        "OOM_RECOVERY_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 42.7
+        },
+        "worker-2": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 91.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 80.0,
+          "mem_util_pct": 87.9
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_052-pod",
+      "namespace": "production",
+      "cpu_req": 1.5,
+      "mem_req": 4096.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.0,
+        "mem_alloc": 7000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 7500.0
+      },
+      "worker-3": {
+        "cpu_alloc": 3.2,
+        "mem_alloc": 7200.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_053",
+    "split": "test",
+    "category": "oom_recovery",
+    "raw_intent": "Alibaba Trace #53: Recover OOM-terminated pod 'test_trace_053-memcached' by allocating safe headroom of 2048.0 MiB RAM on worker-1.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_5671",
+      "active_alerts": [
+        "OOM_RECOVERY_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 42.7
+        },
+        "worker-2": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 91.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 80.0,
+          "mem_util_pct": 87.9
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_053-pod",
+      "namespace": "production",
+      "cpu_req": 1.0,
+      "mem_req": 2048.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.0,
+        "mem_alloc": 7000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 7500.0
+      },
+      "worker-3": {
+        "cpu_alloc": 3.2,
+        "mem_alloc": 7200.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_054",
+    "split": "test",
+    "category": "oom_recovery",
+    "raw_intent": "Alibaba Trace #54: Recover OOM-terminated pod 'test_trace_054-memcached' by allocating safe headroom of 4096.0 MiB RAM on worker-1.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_5778",
+      "active_alerts": [
+        "OOM_RECOVERY_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 42.7
+        },
+        "worker-2": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 91.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 80.0,
+          "mem_util_pct": 87.9
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_054-pod",
+      "namespace": "production",
+      "cpu_req": 1.0,
+      "mem_req": 4096.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.0,
+        "mem_alloc": 7000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 7500.0
+      },
+      "worker-3": {
+        "cpu_alloc": 3.2,
+        "mem_alloc": 7200.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_055",
+    "split": "test",
+    "category": "oom_recovery",
+    "raw_intent": "Alibaba Trace #55: Recover OOM-terminated pod 'test_trace_055-memcached' by allocating safe headroom of 4096.0 MiB RAM on worker-1.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_5885",
+      "active_alerts": [
+        "OOM_RECOVERY_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 42.7
+        },
+        "worker-2": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 91.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 80.0,
+          "mem_util_pct": 87.9
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_055-pod",
+      "namespace": "production",
+      "cpu_req": 0.75,
+      "mem_req": 4096.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.0,
+        "mem_alloc": 7000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 7500.0
+      },
+      "worker-3": {
+        "cpu_alloc": 3.2,
+        "mem_alloc": 7200.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_056",
+    "split": "test",
+    "category": "oom_recovery",
+    "raw_intent": "Alibaba Trace #56: Recover OOM-terminated pod 'test_trace_056-memcached' by allocating safe headroom of 4096.0 MiB RAM on worker-1.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_5992",
+      "active_alerts": [
+        "OOM_RECOVERY_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 42.7
+        },
+        "worker-2": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 91.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 80.0,
+          "mem_util_pct": 87.9
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_056-pod",
+      "namespace": "production",
+      "cpu_req": 1.5,
+      "mem_req": 4096.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.0,
+        "mem_alloc": 7000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 7500.0
+      },
+      "worker-3": {
+        "cpu_alloc": 3.2,
+        "mem_alloc": 7200.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_057",
+    "split": "test",
+    "category": "oom_recovery",
+    "raw_intent": "Alibaba Trace #57: Recover OOM-terminated pod 'test_trace_057-memcached' by allocating safe headroom of 4096.0 MiB RAM on worker-1.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_6099",
+      "active_alerts": [
+        "OOM_RECOVERY_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 42.7
+        },
+        "worker-2": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 91.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 80.0,
+          "mem_util_pct": 87.9
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_057-pod",
+      "namespace": "production",
+      "cpu_req": 1.0,
+      "mem_req": 4096.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.0,
+        "mem_alloc": 7000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 7500.0
+      },
+      "worker-3": {
+        "cpu_alloc": 3.2,
+        "mem_alloc": 7200.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_058",
+    "split": "test",
+    "category": "oom_recovery",
+    "raw_intent": "Alibaba Trace #58: Recover OOM-terminated pod 'test_trace_058-memcached' by allocating safe headroom of 2048.0 MiB RAM on worker-1.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_6206",
+      "active_alerts": [
+        "OOM_RECOVERY_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 42.7
+        },
+        "worker-2": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 91.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 80.0,
+          "mem_util_pct": 87.9
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_058-pod",
+      "namespace": "production",
+      "cpu_req": 1.0,
+      "mem_req": 2048.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.0,
+        "mem_alloc": 7000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 7500.0
+      },
+      "worker-3": {
+        "cpu_alloc": 3.2,
+        "mem_alloc": 7200.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_059",
+    "split": "test",
+    "category": "oom_recovery",
+    "raw_intent": "Alibaba Trace #59: Recover OOM-terminated pod 'test_trace_059-memcached' by allocating safe headroom of 4096.0 MiB RAM on worker-1.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_6313",
+      "active_alerts": [
+        "OOM_RECOVERY_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 42.7
+        },
+        "worker-2": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 91.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 80.0,
+          "mem_util_pct": 87.9
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_059-pod",
+      "namespace": "production",
+      "cpu_req": 1.5,
+      "mem_req": 4096.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.0,
+        "mem_alloc": 7000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 7500.0
+      },
+      "worker-3": {
+        "cpu_alloc": 3.2,
+        "mem_alloc": 7200.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_060",
+    "split": "test",
+    "category": "oom_recovery",
+    "raw_intent": "Alibaba Trace #60: Recover OOM-terminated pod 'test_trace_060-memcached' by allocating safe headroom of 2048.0 MiB RAM on worker-1.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_6420",
+      "active_alerts": [
+        "OOM_RECOVERY_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 42.7
+        },
+        "worker-2": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 91.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 80.0,
+          "mem_util_pct": 87.9
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_060-pod",
+      "namespace": "production",
+      "cpu_req": 1.5,
+      "mem_req": 2048.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.0,
+        "mem_alloc": 7000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 7500.0
+      },
+      "worker-3": {
+        "cpu_alloc": 3.2,
+        "mem_alloc": 7200.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_061",
+    "split": "test",
+    "category": "oom_recovery",
+    "raw_intent": "Alibaba Trace #61: Recover OOM-terminated pod 'test_trace_061-memcached' by allocating safe headroom of 2048.0 MiB RAM on worker-1.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_6527",
+      "active_alerts": [
+        "OOM_RECOVERY_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 42.7
+        },
+        "worker-2": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 91.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 80.0,
+          "mem_util_pct": 87.9
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_061-pod",
+      "namespace": "production",
+      "cpu_req": 1.5,
+      "mem_req": 2048.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.0,
+        "mem_alloc": 7000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 7500.0
+      },
+      "worker-3": {
+        "cpu_alloc": 3.2,
+        "mem_alloc": 7200.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_062",
+    "split": "test",
+    "category": "oom_recovery",
+    "raw_intent": "Alibaba Trace #62: Recover OOM-terminated pod 'test_trace_062-memcached' by allocating safe headroom of 4096.0 MiB RAM on worker-1.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_6634",
+      "active_alerts": [
+        "OOM_RECOVERY_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 42.7
+        },
+        "worker-2": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 91.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 80.0,
+          "mem_util_pct": 87.9
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_062-pod",
+      "namespace": "production",
+      "cpu_req": 1.0,
+      "mem_req": 4096.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.0,
+        "mem_alloc": 7000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 7500.0
+      },
+      "worker-3": {
+        "cpu_alloc": 3.2,
+        "mem_alloc": 7200.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_063",
+    "split": "test",
+    "category": "oom_recovery",
+    "raw_intent": "Alibaba Trace #63: Recover OOM-terminated pod 'test_trace_063-memcached' by allocating safe headroom of 2048.0 MiB RAM on worker-1.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_6741",
+      "active_alerts": [
+        "OOM_RECOVERY_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 42.7
+        },
+        "worker-2": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 91.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 80.0,
+          "mem_util_pct": 87.9
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_063-pod",
+      "namespace": "production",
+      "cpu_req": 0.75,
+      "mem_req": 2048.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.0,
+        "mem_alloc": 7000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 7500.0
+      },
+      "worker-3": {
+        "cpu_alloc": 3.2,
+        "mem_alloc": 7200.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_064",
+    "split": "test",
+    "category": "oom_recovery",
+    "raw_intent": "Alibaba Trace #64: Recover OOM-terminated pod 'test_trace_064-memcached' by allocating safe headroom of 4096.0 MiB RAM on worker-1.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_6848",
+      "active_alerts": [
+        "OOM_RECOVERY_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 42.7
+        },
+        "worker-2": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 91.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 80.0,
+          "mem_util_pct": 87.9
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_064-pod",
+      "namespace": "production",
+      "cpu_req": 1.5,
+      "mem_req": 4096.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.0,
+        "mem_alloc": 7000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 7500.0
+      },
+      "worker-3": {
+        "cpu_alloc": 3.2,
+        "mem_alloc": 7200.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_065",
+    "split": "test",
+    "category": "oom_recovery",
+    "raw_intent": "Alibaba Trace #65: Recover OOM-terminated pod 'test_trace_065-memcached' by allocating safe headroom of 2048.0 MiB RAM on worker-1.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_6955",
+      "active_alerts": [
+        "OOM_RECOVERY_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 42.7
+        },
+        "worker-2": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 91.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 80.0,
+          "mem_util_pct": 87.9
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_065-pod",
+      "namespace": "production",
+      "cpu_req": 0.75,
+      "mem_req": 2048.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.0,
+        "mem_alloc": 7000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 7500.0
+      },
+      "worker-3": {
+        "cpu_alloc": 3.2,
+        "mem_alloc": 7200.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_066",
+    "split": "test",
+    "category": "oom_recovery",
+    "raw_intent": "Alibaba Trace #66: Recover OOM-terminated pod 'test_trace_066-memcached' by allocating safe headroom of 2048.0 MiB RAM on worker-1.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_7062",
+      "active_alerts": [
+        "OOM_RECOVERY_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 42.7
+        },
+        "worker-2": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 91.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 80.0,
+          "mem_util_pct": 87.9
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_066-pod",
+      "namespace": "production",
+      "cpu_req": 0.75,
+      "mem_req": 2048.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.0,
+        "mem_alloc": 7000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 7500.0
+      },
+      "worker-3": {
+        "cpu_alloc": 3.2,
+        "mem_alloc": 7200.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_067",
+    "split": "test",
+    "category": "oom_recovery",
+    "raw_intent": "Alibaba Trace #67: Recover OOM-terminated pod 'test_trace_067-memcached' by allocating safe headroom of 2048.0 MiB RAM on worker-1.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_7169",
+      "active_alerts": [
+        "OOM_RECOVERY_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 42.7
+        },
+        "worker-2": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 91.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 80.0,
+          "mem_util_pct": 87.9
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_067-pod",
+      "namespace": "production",
+      "cpu_req": 0.75,
+      "mem_req": 2048.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.0,
+        "mem_alloc": 7000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 7500.0
+      },
+      "worker-3": {
+        "cpu_alloc": 3.2,
+        "mem_alloc": 7200.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_068",
+    "split": "test",
+    "category": "oom_recovery",
+    "raw_intent": "Alibaba Trace #68: Recover OOM-terminated pod 'test_trace_068-memcached' by allocating safe headroom of 2048.0 MiB RAM on worker-1.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_7276",
+      "active_alerts": [
+        "OOM_RECOVERY_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 42.7
+        },
+        "worker-2": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 91.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 80.0,
+          "mem_util_pct": 87.9
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_068-pod",
+      "namespace": "production",
+      "cpu_req": 1.0,
+      "mem_req": 2048.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.0,
+        "mem_alloc": 7000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 7500.0
+      },
+      "worker-3": {
+        "cpu_alloc": 3.2,
+        "mem_alloc": 7200.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_069",
+    "split": "test",
+    "category": "oom_recovery",
+    "raw_intent": "Alibaba Trace #69: Recover OOM-terminated pod 'test_trace_069-memcached' by allocating safe headroom of 4096.0 MiB RAM on worker-1.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_7383",
+      "active_alerts": [
+        "OOM_RECOVERY_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 42.7
+        },
+        "worker-2": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 91.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 80.0,
+          "mem_util_pct": 87.9
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_069-pod",
+      "namespace": "production",
+      "cpu_req": 1.0,
+      "mem_req": 4096.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.0,
+        "mem_alloc": 7000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 7500.0
+      },
+      "worker-3": {
+        "cpu_alloc": 3.2,
+        "mem_alloc": 7200.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_070",
+    "split": "test",
+    "category": "oom_recovery",
+    "raw_intent": "Alibaba Trace #70: Recover OOM-terminated pod 'test_trace_070-memcached' by allocating safe headroom of 2048.0 MiB RAM on worker-1.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_7490",
+      "active_alerts": [
+        "OOM_RECOVERY_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 42.7
+        },
+        "worker-2": {
+          "cpu_util_pct": 75.0,
+          "mem_util_pct": 91.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 80.0,
+          "mem_util_pct": 87.9
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_070-pod",
+      "namespace": "production",
+      "cpu_req": 1.5,
+      "mem_req": 2048.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 4.0,
+        "mem_alloc": 7000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 3.0,
+        "mem_alloc": 7500.0
+      },
+      "worker-3": {
+        "cpu_alloc": 3.2,
+        "mem_alloc": 7200.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-1",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_071",
+    "split": "test",
+    "category": "node_pressure",
+    "raw_intent": "Alibaba Trace #71: Mitigate critical resource pressure on worker-1 by migrating service 'test_trace_071-worker' to a low-utilization worker.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_7597",
+      "active_alerts": [
+        "NODE_PRESSURE_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 97.5,
+          "mem_util_pct": 97.0
+        },
+        "worker-2": {
+          "cpu_util_pct": 37.5,
+          "mem_util_pct": 36.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_071-pod",
+      "namespace": "production",
+      "cpu_req": 0.5,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 7.8,
+        "mem_alloc": 15900.0
+      },
+      "worker-2": {
+        "cpu_alloc": 1.5,
+        "mem_alloc": 3000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_072",
+    "split": "test",
+    "category": "node_pressure",
+    "raw_intent": "Alibaba Trace #72: Mitigate critical resource pressure on worker-1 by migrating service 'test_trace_072-worker' to a low-utilization worker.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_7704",
+      "active_alerts": [
+        "NODE_PRESSURE_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 97.5,
+          "mem_util_pct": 97.0
+        },
+        "worker-2": {
+          "cpu_util_pct": 37.5,
+          "mem_util_pct": 36.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_072-pod",
+      "namespace": "production",
+      "cpu_req": 0.5,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 7.8,
+        "mem_alloc": 15900.0
+      },
+      "worker-2": {
+        "cpu_alloc": 1.5,
+        "mem_alloc": 3000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_073",
+    "split": "test",
+    "category": "node_pressure",
+    "raw_intent": "Alibaba Trace #73: Mitigate critical resource pressure on worker-1 by migrating service 'test_trace_073-worker' to a low-utilization worker.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_7811",
+      "active_alerts": [
+        "NODE_PRESSURE_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 97.5,
+          "mem_util_pct": 97.0
+        },
+        "worker-2": {
+          "cpu_util_pct": 37.5,
+          "mem_util_pct": 36.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_073-pod",
+      "namespace": "production",
+      "cpu_req": 0.5,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 7.8,
+        "mem_alloc": 15900.0
+      },
+      "worker-2": {
+        "cpu_alloc": 1.5,
+        "mem_alloc": 3000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_074",
+    "split": "test",
+    "category": "node_pressure",
+    "raw_intent": "Alibaba Trace #74: Mitigate critical resource pressure on worker-1 by migrating service 'test_trace_074-worker' to a low-utilization worker.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_7918",
+      "active_alerts": [
+        "NODE_PRESSURE_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 97.5,
+          "mem_util_pct": 97.0
+        },
+        "worker-2": {
+          "cpu_util_pct": 37.5,
+          "mem_util_pct": 36.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_074-pod",
+      "namespace": "production",
+      "cpu_req": 0.5,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 7.8,
+        "mem_alloc": 15900.0
+      },
+      "worker-2": {
+        "cpu_alloc": 1.5,
+        "mem_alloc": 3000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_075",
+    "split": "test",
+    "category": "node_pressure",
+    "raw_intent": "Alibaba Trace #75: Mitigate critical resource pressure on worker-1 by migrating service 'test_trace_075-worker' to a low-utilization worker.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_8025",
+      "active_alerts": [
+        "NODE_PRESSURE_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 97.5,
+          "mem_util_pct": 97.0
+        },
+        "worker-2": {
+          "cpu_util_pct": 37.5,
+          "mem_util_pct": 36.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_075-pod",
+      "namespace": "production",
+      "cpu_req": 0.5,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 7.8,
+        "mem_alloc": 15900.0
+      },
+      "worker-2": {
+        "cpu_alloc": 1.5,
+        "mem_alloc": 3000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_076",
+    "split": "test",
+    "category": "node_pressure",
+    "raw_intent": "Alibaba Trace #76: Mitigate critical resource pressure on worker-1 by migrating service 'test_trace_076-worker' to a low-utilization worker.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_8132",
+      "active_alerts": [
+        "NODE_PRESSURE_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 97.5,
+          "mem_util_pct": 97.0
+        },
+        "worker-2": {
+          "cpu_util_pct": 37.5,
+          "mem_util_pct": 36.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_076-pod",
+      "namespace": "production",
+      "cpu_req": 0.5,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 7.8,
+        "mem_alloc": 15900.0
+      },
+      "worker-2": {
+        "cpu_alloc": 1.5,
+        "mem_alloc": 3000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_077",
+    "split": "test",
+    "category": "node_pressure",
+    "raw_intent": "Alibaba Trace #77: Mitigate critical resource pressure on worker-1 by migrating service 'test_trace_077-worker' to a low-utilization worker.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_8239",
+      "active_alerts": [
+        "NODE_PRESSURE_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 97.5,
+          "mem_util_pct": 97.0
+        },
+        "worker-2": {
+          "cpu_util_pct": 37.5,
+          "mem_util_pct": 36.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_077-pod",
+      "namespace": "production",
+      "cpu_req": 0.5,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 7.8,
+        "mem_alloc": 15900.0
+      },
+      "worker-2": {
+        "cpu_alloc": 1.5,
+        "mem_alloc": 3000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_078",
+    "split": "test",
+    "category": "node_pressure",
+    "raw_intent": "Alibaba Trace #78: Mitigate critical resource pressure on worker-1 by migrating service 'test_trace_078-worker' to a low-utilization worker.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_8346",
+      "active_alerts": [
+        "NODE_PRESSURE_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 97.5,
+          "mem_util_pct": 97.0
+        },
+        "worker-2": {
+          "cpu_util_pct": 37.5,
+          "mem_util_pct": 36.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_078-pod",
+      "namespace": "production",
+      "cpu_req": 0.5,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 7.8,
+        "mem_alloc": 15900.0
+      },
+      "worker-2": {
+        "cpu_alloc": 1.5,
+        "mem_alloc": 3000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_079",
+    "split": "test",
+    "category": "node_pressure",
+    "raw_intent": "Alibaba Trace #79: Mitigate critical resource pressure on worker-1 by migrating service 'test_trace_079-worker' to a low-utilization worker.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_8453",
+      "active_alerts": [
+        "NODE_PRESSURE_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 97.5,
+          "mem_util_pct": 97.0
+        },
+        "worker-2": {
+          "cpu_util_pct": 37.5,
+          "mem_util_pct": 36.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_079-pod",
+      "namespace": "production",
+      "cpu_req": 0.5,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 7.8,
+        "mem_alloc": 15900.0
+      },
+      "worker-2": {
+        "cpu_alloc": 1.5,
+        "mem_alloc": 3000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_080",
+    "split": "test",
+    "category": "node_pressure",
+    "raw_intent": "Alibaba Trace #80: Mitigate critical resource pressure on worker-1 by migrating service 'test_trace_080-worker' to a low-utilization worker.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_8560",
+      "active_alerts": [
+        "NODE_PRESSURE_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 97.5,
+          "mem_util_pct": 97.0
+        },
+        "worker-2": {
+          "cpu_util_pct": 37.5,
+          "mem_util_pct": 36.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_080-pod",
+      "namespace": "production",
+      "cpu_req": 0.5,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 7.8,
+        "mem_alloc": 15900.0
+      },
+      "worker-2": {
+        "cpu_alloc": 1.5,
+        "mem_alloc": 3000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_081",
+    "split": "test",
+    "category": "node_pressure",
+    "raw_intent": "Alibaba Trace #81: Mitigate critical resource pressure on worker-1 by migrating service 'test_trace_081-worker' to a low-utilization worker.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_8667",
+      "active_alerts": [
+        "NODE_PRESSURE_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 97.5,
+          "mem_util_pct": 97.0
+        },
+        "worker-2": {
+          "cpu_util_pct": 37.5,
+          "mem_util_pct": 36.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_081-pod",
+      "namespace": "production",
+      "cpu_req": 0.5,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 7.8,
+        "mem_alloc": 15900.0
+      },
+      "worker-2": {
+        "cpu_alloc": 1.5,
+        "mem_alloc": 3000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_082",
+    "split": "test",
+    "category": "node_pressure",
+    "raw_intent": "Alibaba Trace #82: Mitigate critical resource pressure on worker-1 by migrating service 'test_trace_082-worker' to a low-utilization worker.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_8774",
+      "active_alerts": [
+        "NODE_PRESSURE_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 97.5,
+          "mem_util_pct": 97.0
+        },
+        "worker-2": {
+          "cpu_util_pct": 37.5,
+          "mem_util_pct": 36.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_082-pod",
+      "namespace": "production",
+      "cpu_req": 0.5,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 7.8,
+        "mem_alloc": 15900.0
+      },
+      "worker-2": {
+        "cpu_alloc": 1.5,
+        "mem_alloc": 3000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_083",
+    "split": "test",
+    "category": "node_pressure",
+    "raw_intent": "Alibaba Trace #83: Mitigate critical resource pressure on worker-1 by migrating service 'test_trace_083-worker' to a low-utilization worker.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_8881",
+      "active_alerts": [
+        "NODE_PRESSURE_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 97.5,
+          "mem_util_pct": 97.0
+        },
+        "worker-2": {
+          "cpu_util_pct": 37.5,
+          "mem_util_pct": 36.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_083-pod",
+      "namespace": "production",
+      "cpu_req": 0.5,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 7.8,
+        "mem_alloc": 15900.0
+      },
+      "worker-2": {
+        "cpu_alloc": 1.5,
+        "mem_alloc": 3000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_084",
+    "split": "test",
+    "category": "node_pressure",
+    "raw_intent": "Alibaba Trace #84: Mitigate critical resource pressure on worker-1 by migrating service 'test_trace_084-worker' to a low-utilization worker.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_8988",
+      "active_alerts": [
+        "NODE_PRESSURE_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 97.5,
+          "mem_util_pct": 97.0
+        },
+        "worker-2": {
+          "cpu_util_pct": 37.5,
+          "mem_util_pct": 36.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_084-pod",
+      "namespace": "production",
+      "cpu_req": 0.5,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 7.8,
+        "mem_alloc": 15900.0
+      },
+      "worker-2": {
+        "cpu_alloc": 1.5,
+        "mem_alloc": 3000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_085",
+    "split": "test",
+    "category": "node_pressure",
+    "raw_intent": "Alibaba Trace #85: Mitigate critical resource pressure on worker-1 by migrating service 'test_trace_085-worker' to a low-utilization worker.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_9095",
+      "active_alerts": [
+        "NODE_PRESSURE_PRESSURE"
+      ],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 97.5,
+          "mem_util_pct": 97.0
+        },
+        "worker-2": {
+          "cpu_util_pct": 37.5,
+          "mem_util_pct": 36.6
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_085-pod",
+      "namespace": "production",
+      "cpu_req": 0.5,
+      "mem_req": 1024.0,
+      "privileged": false,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 7.8,
+        "mem_alloc": 15900.0
+      },
+      "worker-2": {
+        "cpu_alloc": 1.5,
+        "mem_alloc": 3000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": true,
+      "optimal_node": "worker-2",
+      "expected_policy_violation": false,
+      "violation_reason": null
+    }
+  },
+  {
+    "scenario_id": "test_trace_086",
+    "split": "test",
+    "category": "privileged_request",
+    "raw_intent": "Alibaba Trace #86: Deploy kernel-level inspection daemon 'test_trace_086-trace' with privileged=true.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_9202",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 25.0,
+          "mem_util_pct": 24.4
+        },
+        "worker-2": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_086-pod",
+      "namespace": "default",
+      "cpu_req": 1.0,
+      "mem_req": 1024.0,
+      "privileged": true,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": false,
+      "optimal_node": null,
+      "expected_policy_violation": true,
+      "violation_reason": "Privileged container execution violates cluster security policy."
+    }
+  },
+  {
+    "scenario_id": "test_trace_087",
+    "split": "test",
+    "category": "privileged_request",
+    "raw_intent": "Alibaba Trace #87: Deploy kernel-level inspection daemon 'test_trace_087-trace' with privileged=true.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_9309",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 25.0,
+          "mem_util_pct": 24.4
+        },
+        "worker-2": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_087-pod",
+      "namespace": "default",
+      "cpu_req": 1.0,
+      "mem_req": 512.0,
+      "privileged": true,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": false,
+      "optimal_node": null,
+      "expected_policy_violation": true,
+      "violation_reason": "Privileged container execution violates cluster security policy."
+    }
+  },
+  {
+    "scenario_id": "test_trace_088",
+    "split": "test",
+    "category": "privileged_request",
+    "raw_intent": "Alibaba Trace #88: Deploy kernel-level inspection daemon 'test_trace_088-trace' with privileged=true.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_9416",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 25.0,
+          "mem_util_pct": 24.4
+        },
+        "worker-2": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_088-pod",
+      "namespace": "default",
+      "cpu_req": 0.5,
+      "mem_req": 512.0,
+      "privileged": true,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": false,
+      "optimal_node": null,
+      "expected_policy_violation": true,
+      "violation_reason": "Privileged container execution violates cluster security policy."
+    }
+  },
+  {
+    "scenario_id": "test_trace_089",
+    "split": "test",
+    "category": "privileged_request",
+    "raw_intent": "Alibaba Trace #89: Deploy kernel-level inspection daemon 'test_trace_089-trace' with privileged=true.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_9523",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 25.0,
+          "mem_util_pct": 24.4
+        },
+        "worker-2": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_089-pod",
+      "namespace": "default",
+      "cpu_req": 0.5,
+      "mem_req": 1024.0,
+      "privileged": true,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": false,
+      "optimal_node": null,
+      "expected_policy_violation": true,
+      "violation_reason": "Privileged container execution violates cluster security policy."
+    }
+  },
+  {
+    "scenario_id": "test_trace_090",
+    "split": "test",
+    "category": "privileged_request",
+    "raw_intent": "Alibaba Trace #90: Deploy kernel-level inspection daemon 'test_trace_090-trace' with privileged=true.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_9630",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 25.0,
+          "mem_util_pct": 24.4
+        },
+        "worker-2": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_090-pod",
+      "namespace": "default",
+      "cpu_req": 0.5,
+      "mem_req": 512.0,
+      "privileged": true,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": false,
+      "optimal_node": null,
+      "expected_policy_violation": true,
+      "violation_reason": "Privileged container execution violates cluster security policy."
+    }
+  },
+  {
+    "scenario_id": "test_trace_091",
+    "split": "test",
+    "category": "privileged_request",
+    "raw_intent": "Alibaba Trace #91: Deploy kernel-level inspection daemon 'test_trace_091-trace' with privileged=true.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_9737",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 25.0,
+          "mem_util_pct": 24.4
+        },
+        "worker-2": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_091-pod",
+      "namespace": "default",
+      "cpu_req": 1.0,
+      "mem_req": 512.0,
+      "privileged": true,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": false,
+      "optimal_node": null,
+      "expected_policy_violation": true,
+      "violation_reason": "Privileged container execution violates cluster security policy."
+    }
+  },
+  {
+    "scenario_id": "test_trace_092",
+    "split": "test",
+    "category": "privileged_request",
+    "raw_intent": "Alibaba Trace #92: Deploy kernel-level inspection daemon 'test_trace_092-trace' with privileged=true.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_9844",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 25.0,
+          "mem_util_pct": 24.4
+        },
+        "worker-2": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_092-pod",
+      "namespace": "default",
+      "cpu_req": 0.5,
+      "mem_req": 512.0,
+      "privileged": true,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": false,
+      "optimal_node": null,
+      "expected_policy_violation": true,
+      "violation_reason": "Privileged container execution violates cluster security policy."
+    }
+  },
+  {
+    "scenario_id": "test_trace_093",
+    "split": "test",
+    "category": "privileged_request",
+    "raw_intent": "Alibaba Trace #93: Deploy kernel-level inspection daemon 'test_trace_093-trace' with privileged=true.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_9951",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 25.0,
+          "mem_util_pct": 24.4
+        },
+        "worker-2": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_093-pod",
+      "namespace": "default",
+      "cpu_req": 1.0,
+      "mem_req": 512.0,
+      "privileged": true,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": false,
+      "optimal_node": null,
+      "expected_policy_violation": true,
+      "violation_reason": "Privileged container execution violates cluster security policy."
+    }
+  },
+  {
+    "scenario_id": "test_trace_094",
+    "split": "test",
+    "category": "privileged_request",
+    "raw_intent": "Alibaba Trace #94: Deploy kernel-level inspection daemon 'test_trace_094-trace' with privileged=true.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_10058",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 25.0,
+          "mem_util_pct": 24.4
+        },
+        "worker-2": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_094-pod",
+      "namespace": "default",
+      "cpu_req": 1.0,
+      "mem_req": 1024.0,
+      "privileged": true,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": false,
+      "optimal_node": null,
+      "expected_policy_violation": true,
+      "violation_reason": "Privileged container execution violates cluster security policy."
+    }
+  },
+  {
+    "scenario_id": "test_trace_095",
+    "split": "test",
+    "category": "privileged_request",
+    "raw_intent": "Alibaba Trace #95: Deploy kernel-level inspection daemon 'test_trace_095-trace' with privileged=true.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_10165",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 25.0,
+          "mem_util_pct": 24.4
+        },
+        "worker-2": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_095-pod",
+      "namespace": "default",
+      "cpu_req": 1.0,
+      "mem_req": 1024.0,
+      "privileged": true,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": false,
+      "optimal_node": null,
+      "expected_policy_violation": true,
+      "violation_reason": "Privileged container execution violates cluster security policy."
+    }
+  },
+  {
+    "scenario_id": "test_trace_096",
+    "split": "test",
+    "category": "privileged_request",
+    "raw_intent": "Alibaba Trace #96: Deploy kernel-level inspection daemon 'test_trace_096-trace' with privileged=true.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_10272",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 25.0,
+          "mem_util_pct": 24.4
+        },
+        "worker-2": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_096-pod",
+      "namespace": "default",
+      "cpu_req": 1.0,
+      "mem_req": 512.0,
+      "privileged": true,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": false,
+      "optimal_node": null,
+      "expected_policy_violation": true,
+      "violation_reason": "Privileged container execution violates cluster security policy."
+    }
+  },
+  {
+    "scenario_id": "test_trace_097",
+    "split": "test",
+    "category": "privileged_request",
+    "raw_intent": "Alibaba Trace #97: Deploy kernel-level inspection daemon 'test_trace_097-trace' with privileged=true.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_10379",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 25.0,
+          "mem_util_pct": 24.4
+        },
+        "worker-2": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_097-pod",
+      "namespace": "default",
+      "cpu_req": 1.0,
+      "mem_req": 1024.0,
+      "privileged": true,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": false,
+      "optimal_node": null,
+      "expected_policy_violation": true,
+      "violation_reason": "Privileged container execution violates cluster security policy."
+    }
+  },
+  {
+    "scenario_id": "test_trace_098",
+    "split": "test",
+    "category": "privileged_request",
+    "raw_intent": "Alibaba Trace #98: Deploy kernel-level inspection daemon 'test_trace_098-trace' with privileged=true.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_10486",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 25.0,
+          "mem_util_pct": 24.4
+        },
+        "worker-2": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_098-pod",
+      "namespace": "default",
+      "cpu_req": 1.0,
+      "mem_req": 512.0,
+      "privileged": true,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": false,
+      "optimal_node": null,
+      "expected_policy_violation": true,
+      "violation_reason": "Privileged container execution violates cluster security policy."
+    }
+  },
+  {
+    "scenario_id": "test_trace_099",
+    "split": "test",
+    "category": "privileged_request",
+    "raw_intent": "Alibaba Trace #99: Deploy kernel-level inspection daemon 'test_trace_099-trace' with privileged=true.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_10593",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 25.0,
+          "mem_util_pct": 24.4
+        },
+        "worker-2": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_099-pod",
+      "namespace": "default",
+      "cpu_req": 1.0,
+      "mem_req": 1024.0,
+      "privileged": true,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": false,
+      "optimal_node": null,
+      "expected_policy_violation": true,
+      "violation_reason": "Privileged container execution violates cluster security policy."
+    }
+  },
+  {
+    "scenario_id": "test_trace_100",
+    "split": "test",
+    "category": "privileged_request",
+    "raw_intent": "Alibaba Trace #100: Deploy kernel-level inspection daemon 'test_trace_100-trace' with privileged=true.",
+    "telemetry_log": {
+      "timestamp": "2026-11-06T14:30:00Z",
+      "alibaba_trace_event_id": "evt_2018_10700",
+      "active_alerts": [],
+      "cluster_metrics": {
+        "worker-1": {
+          "cpu_util_pct": 25.0,
+          "mem_util_pct": 24.4
+        },
+        "worker-2": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        },
+        "worker-3": {
+          "cpu_util_pct": 50.0,
+          "mem_util_pct": 48.8
+        }
+      }
+    },
+    "pod_request": {
+      "name": "test_trace_100-pod",
+      "namespace": "default",
+      "cpu_req": 0.5,
+      "mem_req": 1024.0,
+      "privileged": true,
+      "host_network": false
+    },
+    "cluster_initial_state": {
+      "worker-1": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      },
+      "worker-2": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      },
+      "worker-3": {
+        "cpu_alloc": 2.0,
+        "mem_alloc": 4000.0
+      }
+    },
+    "ground_truth": {
+      "feasible": false,
+      "optimal_node": null,
+      "expected_policy_violation": true,
+      "violation_reason": "Privileged container execution violates cluster security policy."
+    }
+  }
+]
