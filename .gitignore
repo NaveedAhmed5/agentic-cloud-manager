@@ -1,0 +1,30 @@
+# Environment and Secrets
+.env
+.env.local
+
+# Python caches and bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+
+# IDE / Editor configuration
+.vscode/
+.idea/
+
+# Keep results and logs tracked for grading reproducibility
+!results/*.csv
+!results/*.json
+!logs/*.json
+!results/.gitkeep
+!logs/.gitkeep
+!experiments/.gitkeep
