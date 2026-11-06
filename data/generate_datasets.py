@@ -489,3 +489,4 @@ def generate_and_save_all(seed: int = 42) -> None:
 
 if __name__ == "__main__":
     generate_and_save_all(seed=42)
+
