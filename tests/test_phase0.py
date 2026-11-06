@@ -94,3 +94,4 @@ def test_agent_graph_state_proposed_plan_and_trajectory():
     assert step["agent"] == "Planner"
     assert step["reasoning"] == "Selected node-1 based on lowest CPU utilization."
     assert "timestamp" in step
+

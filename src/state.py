@@ -215,3 +215,4 @@ class AgentGraphState(BaseModel):
             timestamp=timestamp or datetime.now(timezone.utc).isoformat(),
         )
         self.trajectory_log.append(step.model_dump())
+

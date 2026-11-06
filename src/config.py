@@ -126,3 +126,4 @@ class SystemConfig(BaseModel):
 
 # Default global instance for convenience
 default_config = SystemConfig()
+
