@@ -20,6 +20,44 @@ from typing import Any, Optional, Union
 from src.state import ProposedPlan
 
 
+def parse_k8s_resource(val: Any, default: float = 0.0) -> float:
+    """Parse Kubernetes resource string or numeric value to float."""
+    if val is None:
+        return default
+    if isinstance(val, (int, float)):
+        return float(val)
+    val_str = str(val).strip()
+    if not val_str:
+        return default
+    if val_str.endswith("m"):
+        try:
+            return float(val_str[:-1]) / 1000.0
+        except ValueError:
+            return default
+    if val_str.endswith("Gi") or val_str.endswith("G"):
+        num_part = val_str.rstrip("GiG")
+        try:
+            return float(num_part) * 1024.0
+        except ValueError:
+            return default
+    if val_str.endswith("Mi") or val_str.endswith("M"):
+        num_part = val_str.rstrip("MiM")
+        try:
+            return float(num_part)
+        except ValueError:
+            return default
+    if val_str.endswith("Ki") or val_str.endswith("K"):
+        num_part = val_str.rstrip("KiK")
+        try:
+            return float(num_part) / 1024.0
+        except ValueError:
+            return default
+    try:
+        return float(val_str)
+    except ValueError:
+        return default
+
+
 @dataclass
 class NodeState:
     """State of an individual Kubernetes node in the cluster."""
@@ -183,8 +221,10 @@ class K8sMultiNodeEmulator:
         containers = spec.get("containers", [{}])
         first_container = containers[0] if containers else {}
         resources = first_container.get("resources", {}).get("requests", {})
-        cpu_req = float(resources.get("cpu", body.get("cpu_req", 0.1)))
-        mem_req = float(resources.get("memory", body.get("mem_req", 128.0)))
+        raw_cpu = resources.get("cpu", body.get("cpu_req", 0.1))
+        raw_mem = resources.get("memory", body.get("mem_req", 128.0))
+        cpu_req = parse_k8s_resource(raw_cpu, default=0.1)
+        mem_req = parse_k8s_resource(raw_mem, default=128.0)
         target_node = spec.get("nodeName") or body.get("target_node")
 
         # If target node specified explicitly, attempt binding to it
