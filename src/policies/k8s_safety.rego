@@ -80,3 +80,4 @@ require_hitl[msg] {
 allow {
     count(deny) == 0
 }
+

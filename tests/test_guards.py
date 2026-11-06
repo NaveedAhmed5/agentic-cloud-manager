@@ -236,3 +236,4 @@ def test_evaluate_opa_and_governance_full_pipeline():
     )
     evaluate_opa_and_governance(deadlock_state, cfg)
     assert deadlock_state.deadlock_occurred is True
+
