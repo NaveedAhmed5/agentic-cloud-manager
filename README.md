@@ -12,9 +12,8 @@
 - **Institution:** National University of Computer and Emerging Sciences (FAST-NUCES), Islamabad
 - **Course:** AI4015 — Agentic AI (Fall 2026)
 - **Team Members:**
-  - **Student 1:** Naveed Ahmed (Lead Architect & Security Engineer)
-  - **Student 2:** [Team Member 2 Name / Roll Number]
-  - **Student 3:** [Team Member 3 Name / Roll Number]
+  - **Student 1:** Naveed Ahmed (22i-0889)
+  - **Student 2:** Mubariz (22i-1104)
 - **Instructor / Course Lead:** Dr. [Instructor Name]
 - **Target Paper Replicated:** *AgentEdge: An Edge-Cloud Collaborative Multi-Agent System with Action Simulation and Critic Feedback* (IEEE/ACM, 2024).
 
@@ -337,3 +336,4 @@ All iterative development steps, observed baseline failures, architectural resol
 - **Entry #4 (2026-11-06):** Phase 2 Gap 3 Component — Pre-Execution Adversarial Prompt Injection & Telemetry Poisoning Defense
 - **Entry #5 (2026-11-06):** Phase 3 Complete 4-Agent PARES Pipeline, ActSimCrit Reflection Loop & Baselines
 - **Entry #6 (2026-11-08):** Phase 4 Experimental Evaluation Suite (E1–E6), Statistical Aggregation & Failure Analysis
+
