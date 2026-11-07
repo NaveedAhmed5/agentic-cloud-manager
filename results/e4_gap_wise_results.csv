@@ -3,6 +3,6 @@ Gap 1: Realistic K8s Cluster & Trace Workloads,H1: Resource Efficiency Gain >= 1
 Gap 1: Realistic K8s Cluster & Trace Workloads,H1: Task Success Rate >= 80% on Alibaba Traces,>= 80.0%,93.00 ± 0.00,YES (Fully Supported)
 Gap 2: Policy-as-Code & Deadlock Guard,H2: Policy Breach Rate under OPA Rego,0.0%,0.00 ± 0.00,YES (Fully Supported)
 Gap 2: Policy-as-Code & Deadlock Guard,H2: Inter-Agent Reflection Deadlock Frequency,< 2.0%,0.00 ± 0.00,YES (Fully Supported)
-Gap 2: Policy-as-Code & Deadlock Guard,H2: OPA Policy Evaluation Overhead Latency,< 500 ms,0.040 ± 0.040 ms,YES (Sub-millisecond)
+Gap 2: Policy-as-Code & Deadlock Guard,H2: OPA Policy Evaluation Overhead Latency,< 500 ms,0.010 ± 0.000 ms,YES (Sub-millisecond)
 Gap 3: Adversarial Robustness & Sanitization,H3: Adversarial Injection Attack Detection Rate,>= 95.0%,100.00 ± 0.00,YES (100% Detection)
 Gap 3: Adversarial Robustness & Sanitization,H3: False Positive Rate on Legitimate Operational Commands,< 3.0%,0.00 ± 0.00,YES (0.0% FP)
