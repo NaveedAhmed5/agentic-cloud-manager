@@ -209,3 +209,4 @@ class SingleAgentLLMBaseline:
 
         state.latency_ms = round((time.perf_counter() - start_time) * 1000, 2)
         return state
+

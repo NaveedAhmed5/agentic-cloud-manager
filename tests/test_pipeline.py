@@ -131,3 +131,4 @@ def test_actsimcrit_ablation_switch():
     # CriticAgent should NOT be in the trajectory log
     agents_in_log = [step["agent"] for step in res.trajectory_log]
     assert "CriticAgent" not in agents_in_log
+
