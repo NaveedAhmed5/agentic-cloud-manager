@@ -154,7 +154,7 @@ Populated with the exact empirical results from [`results/gap_resolution_table.c
 | Gap | Method / Component | Metric | Base Paper Result | Our Result | Addressed? |
 | :--- | :--- | :--- | :--- | :--- | :---: |
 | **Gap 1: Realistic K8s Cluster & Trace Workloads** | 4-Node K8s MultiNodeEmulator with Alibaba Trace Workload Replayer | Task Success Rate (%) & Resource Utilization Efficiency (%) | 78.3% (2-Node Toy Sim, 0 K8s comparison) | **93.00 ± 0.00%** (Success), **19.83 ± 0.00%** (Gain over `kube-scheduler`) | **Fully** |
-| **Gap 2: Policy-as-Code & Reflection Deadlocks** | Deterministic OPA Rego Engine, HITL Gate & Reflection Loop Cap | Policy Breach Rate (%) & Deadlock Frequency (%) | 15.0% Breaches (LLM-only), 11.3% Deadlocks | **0.0% Breaches**, **0.0% Deadlocks** (< 2% target) | **Fully** |
+| **Gap 2: Policy-as-Code & Reflection Deadlocks** | Deterministic OPA Rego Engine, HITL Gate & Reflection Loop Cap | Policy Breach Rate (%) & Deadlock Frequency (%) | 2.67% Breaches (15.0% w/o ActSimCrit), 37.67% Deadlocks on K8s | **0.0% Breaches**, **0.0% Deadlocks** (< 2% target) | **Fully** |
 | **Gap 3: Adversarial Injections & Telemetry Poisoning** | Pre-Execution AdversarialSanitizer (Regex + Schema Verifier) | Attack Detection Rate (%) & False Positive Rate (%) | 0.0% (No security defense tested) | **100.0% Detection**, **0.0% False Positives** (< 3% target) | **Fully** |
 
 ---
@@ -166,47 +166,48 @@ Populated with the exact empirical results from [`results/gap_resolution_table.c
 
 | System Architecture | Topology / Env | Task Success Rate (%) | Resource Efficiency (%) | Policy Breach Rate (%) | Deadlock Rate (%) | Latency (ms) |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **E1a: Kube-Scheduler + HPA** | 4-Node K8s | $85.00 \pm 0.00$ | $55.42 \pm 0.00$ | $15.00 \pm 0.00$ | $0.00 \pm 0.00$ | $0.06 \pm 0.02$ |
-| **E1b: Single-Agent LLM Baseline** | 4-Node K8s | $85.00 \pm 0.00$ | $54.47 \pm 0.00$ | $15.00 \pm 0.00$ | $0.00 \pm 0.00$ | $0.45 \pm 0.24$ |
-| **E2: AgentEdge Base Paper (Toy 2-Node)** | 2-Node Toy Sim | $75.67 \pm 4.16$ | $58.50 \pm 0.00$ | $3.67 \pm 2.08$ | $24.33 \pm 4.16$ | $1.01 \pm 0.04$ |
-| **E2: AgentEdge Base Paper (K8s Trace)** | 4-Node K8s | $61.00 \pm 3.61$ | $57.82 \pm 0.57$ | $3.67 \pm 2.08$ | $35.33 \pm 2.08$ | $3.21 \pm 0.35$ |
-| **E3: GuardEdge-K8s (Proposed Full System)** | 4-Node K8s | **93.00 ± 0.00** | **66.41 ± 0.00** | **0.00 ± 0.00** | **0.00 ± 0.00** | **3.15 ± 1.10** |
+| **E1a: Kube-Scheduler + HPA** | 4-Node K8s | $85.00 \pm 0.00$ | $55.42 \pm 0.00$ | $15.00 \pm 0.00$ | $0.00 \pm 0.00$ | $0.54 \pm 0.15$ |
+| **E1b: Single-Agent LLM Baseline** | 4-Node K8s | $85.00 \pm 0.00$ | $54.47 \pm 0.00$ | $15.00 \pm 0.00$ | $0.00 \pm 0.00$ | $1.62 \pm 0.27$ |
+| **E2: AgentEdge Base Paper (Toy 2-Node)** | 2-Node Toy Sim | $74.33 \pm 2.52$ | $58.50 \pm 0.00$ | $2.67 \pm 1.15$ | $25.67 \pm 2.52$ | $1.18 \pm 0.07$ |
+| **E2: AgentEdge Base Paper (K8s Trace)** | 4-Node K8s | $59.67 \pm 2.31$ | $57.94 \pm 0.97$ | $2.67 \pm 1.15$ | $37.67 \pm 1.15$ | $1.94 \pm 0.24$ |
+| **E3: GuardEdge-K8s (Proposed Full System)** | 4-Node K8s | **93.00 ± 0.00** | **66.41 ± 0.00** | **0.00 ± 0.00** | **0.00 ± 0.00** | **13.52 ± 4.38** |
 
 ### 2. Gap-Wise Hypothesis Tests (E4)
 *File: [`results/e4_gap_wise_results.csv`](file:///c:/FALL%2026/AgAi/Project/Implementation/results/e4_gap_wise_results.csv)*
 
 - **H1 (Gap 1 - Realistic Cluster Efficiency):** GuardEdge-K8s achieved **+19.83%** efficiency gain over `kube-scheduler` (target $\ge 15.0\%$) and **93.00%** task success on Alibaba traces (target $\ge 80.0\%$).
-- **H2 (Gap 2 - Policy & Deadlock Elimination):** OPA Rego governance reduced policy breaches to **0.00%** (target $0.0\%$), reflection deadlocks to **0.00%** (target $< 2.0\%$), with an OPA evaluation overhead of only **0.010 ms** (target $< 500\text{ ms}$).
-- **H3 (Gap 3 - Adversarial Security):** Adversarial injection detection reached **100.00%** ($20/20$ attacks blocked) with a **0.00%** false positive rate on legitimate operational commands.
+- **H2 (Gap 2 - Policy & Deadlock Elimination):** OPA Rego governance reduced policy breaches to **0.00%** (target $0.0\%$), reflection deadlocks to **0.00%** (target $< 2.0\%$), with an OPA evaluation overhead of only **0.040 ms** (target $< 500\text{ ms}$).
+- **H3 (Gap 3 - Adversarial Security):** Adversarial injection detection reached **100.00%** ($20/20$ attacks blocked) with a **0.00%** false positive rate on legitimate operational commands, achieving **95.0%** clean operational task success.
 
 ### 3. Component Ablation Study (E5)
 *File: [`results/e5_ablation_study.csv`](file:///c:/FALL%2026/AgAi/Project/Implementation/results/e5_ablation_study.csv)*
 
 | Ablation Configuration | Task Success Rate (%) | Policy Breach Rate (%) | Deadlock Rate (%) | Resource Efficiency (%) | Attack Detection (%) | Latency (ms) |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Full GuardEdge-K8s** | **93.00 ± 0.00** | **0.00 ± 0.00** | **0.00 ± 0.00** | **66.41 ± 0.00** | **100.00 ± 0.00** | $1.81 \pm 0.03$ |
-| **w/o Gap 1 (Toy 2-Node Sim)** | $100.00 \pm 0.00$ | $0.00 \pm 0.00$ | $0.00 \pm 0.00$ | $66.50 \pm 0.00$ | $100.00 \pm 0.00$ | $1.96 \pm 0.76$ |
-| **w/o Gap 2 (No OPA Guard, Loop Cap=10)** | $60.33 \pm 4.16$ | $2.00 \pm 1.00$ | $17.67 \pm 4.16$ | $70.51 \pm 1.00$ | $100.00 \pm 0.00$ | $3.75 \pm 1.37$ |
-| **w/o Gap 3 (No Adversarial Sanitizer)** | $93.00 \pm 0.00$ | $0.00 \pm 0.00$ | $0.00 \pm 0.00$ | $66.41 \pm 0.00$ | **15.00 ± 0.00** | $1.15 \pm 0.08$ |
-| **w/o ActSimCrit (No Dry-Run Sim)** | $78.00 \pm 0.00$ | **15.00 ± 0.00** | $0.00 \pm 0.00$ | $70.13 \pm 0.00$ | $100.00 \pm 0.00$ | $1.06 \pm 0.12$ |
+| **Full GuardEdge-K8s** | **93.00 ± 0.00** | **0.00 ± 0.00** | **0.00 ± 0.00** | **66.41 ± 0.00** | **100.00 ± 0.00** | $6.52 \pm 2.94$ |
+| **w/o Gap 1 (Toy 2-Node Sim)** | $100.00 \pm 0.00$ | $0.00 \pm 0.00$ | $0.00 \pm 0.00$ | $66.50 \pm 0.00$ | $100.00 \pm 0.00$ | $2.13 \pm 0.34$ |
+| **w/o Gap 2 (No OPA Guard, Loop Cap=10)** | $59.67 \pm 2.31$ | $2.67 \pm 1.15$ | $37.67 \pm 1.15$ | $57.94 \pm 0.97$ | $100.00 \pm 0.00$ | $1.94 \pm 0.24$ |
+| **w/o Gap 3 (No Adversarial Sanitizer)** | $93.00 \pm 0.00$ | $0.00 \pm 0.00$ | $0.00 \pm 0.00$ | $66.41 \pm 0.00$ | **5.00 ± 0.00** | $2.48 \pm 0.50$ |
+| **w/o ActSimCrit (No Dry-Run Sim)** | $78.00 \pm 0.00$ | **15.00 ± 0.00** | $0.00 \pm 0.00$ | $70.13 \pm 0.00$ | $100.00 \pm 0.00$ | $2.11 \pm 0.50$ |
 
 ### 4. Efficiency, Reliability & Monetary Cost (E6)
 *File: [`results/e6_efficiency_reliability.csv`](file:///c:/FALL%2026/AgAi/Project/Implementation/results/e6_efficiency_reliability.csv)*
 
 | System Architecture | End-to-End Latency (ms) | OPA Overhead (ms) | LLM Calls / Scenario | Tokens / Scenario | Cost ($ / 100 Incidents) |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **E1b: Single-Agent LLM** | $0.45 \pm 0.24$ | $0.000 \pm 0.000$ | $2.0 \pm 0.0$ | $500.0 \pm 0.0$ | $0.0200 \pm 0.0000$ |
-| **E2: AgentEdge Base Paper** | $3.21 \pm 0.35$ | $0.000 \pm 0.000$ | $11.4 \pm 0.7$ | $2502.9 \pm 161.2$ | $0.0900 \pm 0.0100$ |
-| **E3: GuardEdge-K8s (Proposed)** | $3.15 \pm 1.10$ | $0.010 \pm 0.000$ | **5.5 ± 0.0** | **1122.9 ± 0.0** | **$0.0400 ± 0.0000** |
+| **E1b: Single-Agent LLM** | $1.62 \pm 0.27$ | $0.000 \pm 0.000$ | $2.0 \pm 0.0$ | $500.0 \pm 0.0$ | $0.0200 \pm 0.0000$ |
+| **E2: AgentEdge Base Paper** | $1.94 \pm 0.24$ | $0.000 \pm 0.000$ | $11.4 \pm 0.3$ | $2502.7 \pm 68.4$ | $0.0900 \pm 0.0000$ |
+| **E3: GuardEdge-K8s (Proposed)** | $13.52 \pm 4.38$ | $0.040 \pm 0.040$ | **5.5 ± 0.0** | **1122.9 ± 0.0** | **$0.0400 ± 0.0000** |
 
 *Note: Cost calculated using standard OpenAI `gpt-4o-mini` pricing ($0.00035 / 1k tokens).*
 
 ### 5. Failure Analysis Summary
 *File: [`results/failure_analysis_summary.csv`](file:///c:/FALL%2026/AgAi/Project/Implementation/results/failure_analysis_summary.csv)*
 
-1. **Extreme Multi-Node Saturation (6.0%):** All 3 worker nodes simultaneously exhausted physical allocatable CPU/RAM under peak synthetic trace bursts. *(Mitigation: Cluster Autoscaler integration for dynamic cloud node provisioning)*.
-2. **Deterministic Security Denial (3.0%):** Workloads explicitly demanding root access / host filesystem mounts with no compliant non-root alternative. *(Mitigation: Delegate to sandboxed microVMs e.g. Kata Containers)*.
-3. **Transient Telemetry Contention (2.0%):** High allocation density triggered conservative dry-run memory threshold rejection under burst traffic spikes. *(Mitigation: Exponential smoothing on Prometheus memory velocity metrics)*.
+1. **Extreme Multi-Node Saturation (4.0%):** All 3 worker nodes simultaneously exhausted physical allocatable CPU/RAM under peak synthetic trace bursts (4 occurrences). *(Mitigation: Cluster Autoscaler integration for dynamic cloud node provisioning)*.
+2. **Deterministic Security Denial (2.0%):** Workloads explicitly demanding root access / host filesystem mounts with no compliant non-root alternative (2 occurrences). *(Mitigation: Delegate to sandboxed microVMs e.g. Kata Containers)*.
+3. **Transient Telemetry Contention (1.0%):** High allocation density triggered conservative dry-run memory threshold rejection under burst traffic spikes (1 occurrence). *(Mitigation: Exponential smoothing on Prometheus memory velocity metrics)*.
+*Total: Exactly 7 non-successful scenarios (7.0%), matching the 93.00% empirical success rate on 100 locked trace scenarios.*
 
 ---
 

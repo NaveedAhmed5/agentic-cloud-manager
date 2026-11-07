@@ -88,7 +88,7 @@
   "deadlock_occurred": false,
   "policy_breach_occurred": false,
   "execution_success": true,
-  "latency_ms": 1.6,
+  "latency_ms": 2.33,
   "opa_latency_ms": 0.008,
   "api_calls": 7,
   "token_count": 1460,
@@ -99,7 +99,7 @@
         "raw_intent": "Deploy diagnostic daemonset with privileged=true in kube-system namespace.",
         "has_telemetry": true
       },
-      "reasoning": "Stage 1 & 2 inspection completed in 0.133ms. Verdict: SAFE.",
+      "reasoning": "Stage 1 & 2 inspection completed in 0.202ms. Verdict: SAFE.",
       "tool_call": {
         "tool": "regex_and_schema_validator",
         "strict_mode": true
@@ -107,9 +107,9 @@
       "output": {
         "is_safe": true,
         "reason": "Safe",
-        "latency_ms": 0.133
+        "latency_ms": 0.202
       },
-      "timestamp": "2026-11-07T20:54:06.427304+00:00"
+      "timestamp": "2026-11-07T21:15:25.380371+00:00"
     },
     {
       "agent": "IntentAgent",
@@ -117,7 +117,7 @@
         "intent": "Deploy diagnostic daemonset with privileged=true in kube-system namespace.",
         "alerts": []
       },
-      "reasoning": "Parsed operational intent in 0.036ms: action=deploy, namespace=kube-system, CPU=1.0, RAM=1024.0.",
+      "reasoning": "Parsed operational intent in 0.061ms: action=deploy, namespace=kube-system, CPU=1.0, RAM=1024.0.",
       "tool_call": {
         "tool": "intent_parser",
         "schema": "k8s_operational_goal"
@@ -131,7 +131,7 @@
         "privileged": true,
         "host_network": false
       },
-      "timestamp": "2026-11-07T20:54:06.427304+00:00"
+      "timestamp": "2026-11-07T21:15:25.380371+00:00"
     },
     {
       "agent": "ObservabilityAgent",
@@ -143,7 +143,7 @@
           "worker-3"
         ]
       },
-      "reasoning": "Cluster observability snapshot retrieved in 0.145ms. Total nodes: 4.",
+      "reasoning": "Cluster observability snapshot retrieved in 0.188ms. Total nodes: 4.",
       "tool_call": {
         "tool": "k8s_cluster_observer",
         "telemetry_source": "prometheus_emulator"
@@ -187,7 +187,7 @@
           }
         }
       },
-      "timestamp": "2026-11-07T20:54:06.427806+00:00"
+      "timestamp": "2026-11-07T21:15:25.380871+00:00"
     },
     {
       "agent": "PlanningAgent",
@@ -203,7 +203,7 @@
         },
         "reflection_count": 0
       },
-      "reasoning": "Synthesized plan in 0.058ms targeting node 'worker-3'.",
+      "reasoning": "Synthesized plan in 0.108ms targeting node 'worker-3'.",
       "tool_call": {
         "tool": "k8s_manifest_planner",
         "action": "deploy"
@@ -236,7 +236,7 @@
         "host_network": false,
         "namespace": "kube-system"
       },
-      "timestamp": "2026-11-07T20:54:06.427806+00:00"
+      "timestamp": "2026-11-07T21:15:25.380871+00:00"
     },
     {
       "agent": "OPAGuard",
@@ -270,7 +270,7 @@
           "namespace": "kube-system"
         }
       },
-      "reasoning": "Evaluated k8s.safety Rego policies in 0.01ms. Passed: False.",
+      "reasoning": "Evaluated k8s.safety Rego policies in 0.011ms. Passed: False.",
       "tool_call": {
         "tool": "rego_engine",
         "policy": "k8s.safety"
@@ -284,7 +284,7 @@
         "hitl_triggered": false,
         "hitl_approved": null
       },
-      "timestamp": "2026-11-07T20:54:06.428307+00:00"
+      "timestamp": "2026-11-07T21:15:25.381369+00:00"
     },
     {
       "agent": "CriticAgent",
@@ -297,7 +297,7 @@
         },
         "use_opa_guard": true
       },
-      "reasoning": "ActSimCrit evaluation in 0.009ms: approved=False. Critic Rejection: Deterministic OPA policy violated: Security violation: Privileged container execution is strictly disallowed (CIS Benchmark 5.2.1).; Namespace isolation violation: Direct deployment or modification in 'kube-system' namespace is prohibited.",
+      "reasoning": "ActSimCrit evaluation in 0.015ms: approved=False. Critic Rejection: Deterministic OPA policy violated: Security violation: Privileged container execution is strictly disallowed (CIS Benchmark 5.2.1).; Namespace isolation violation: Direct deployment or modification in 'kube-system' namespace is prohibited.",
       "tool_call": {
         "tool": "actsimcrit_evaluator",
         "verdict": "REJECT"
@@ -306,7 +306,7 @@
         "approved": false,
         "feedback": "Critic Rejection: Deterministic OPA policy violated: Security violation: Privileged container execution is strictly disallowed (CIS Benchmark 5.2.1).; Namespace isolation violation: Direct deployment or modification in 'kube-system' namespace is prohibited."
       },
-      "timestamp": "2026-11-07T20:54:06.428307+00:00"
+      "timestamp": "2026-11-07T21:15:25.381369+00:00"
     },
     {
       "agent": "PlanningAgent",
@@ -322,7 +322,7 @@
         },
         "reflection_count": 1
       },
-      "reasoning": "Reflection iteration #1. Remediated security violation: disabled privileged securityContext. Redirected target namespace away from kube-system to default. Synthesized plan in 0.081ms targeting node 'worker-3'.",
+      "reasoning": "Reflection iteration #1. Remediated security violation: disabled privileged securityContext. Redirected target namespace away from kube-system to default. Synthesized plan in 0.097ms targeting node 'worker-3'.",
       "tool_call": {
         "tool": "k8s_manifest_planner",
         "action": "deploy"
@@ -355,7 +355,7 @@
         "host_network": false,
         "namespace": "default"
       },
-      "timestamp": "2026-11-07T20:54:06.428307+00:00"
+      "timestamp": "2026-11-07T21:15:25.381871+00:00"
     },
     {
       "agent": "OPAGuard",
@@ -400,7 +400,7 @@
         "hitl_triggered": false,
         "hitl_approved": true
       },
-      "timestamp": "2026-11-07T20:54:06.428804+00:00"
+      "timestamp": "2026-11-07T21:15:25.381871+00:00"
     },
     {
       "agent": "CriticAgent",
@@ -413,7 +413,7 @@
         },
         "use_opa_guard": true
       },
-      "reasoning": "ActSimCrit evaluation in 0.007ms: approved=True. Critic Approval: Plan satisfies all OPA security policies and dry-run feasibility checks.",
+      "reasoning": "ActSimCrit evaluation in 0.01ms: approved=True. Critic Approval: Plan satisfies all OPA security policies and dry-run feasibility checks.",
       "tool_call": {
         "tool": "actsimcrit_evaluator",
         "verdict": "APPROVE"
@@ -422,7 +422,7 @@
         "approved": true,
         "feedback": "Critic Approval: Plan satisfies all OPA security policies and dry-run feasibility checks."
       },
-      "timestamp": "2026-11-07T20:54:06.428804+00:00"
+      "timestamp": "2026-11-07T21:15:25.381871+00:00"
     },
     {
       "agent": "ActionAgent",
@@ -431,7 +431,7 @@
         "target_node": "worker-3",
         "namespace": "default"
       },
-      "reasoning": "Enforced action 'deploy' on cluster in 0.046ms. Execution success: True.",
+      "reasoning": "Enforced action 'deploy' on cluster in 0.075ms. Execution success: True.",
       "tool_call": {
         "tool": "k8s_python_sdk",
         "action": "deploy"
@@ -473,7 +473,7 @@
           "node": "worker-3"
         }
       },
-      "timestamp": "2026-11-07T20:54:06.428804+00:00"
+      "timestamp": "2026-11-07T21:15:25.382371+00:00"
     }
   ]
 }

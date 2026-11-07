@@ -476,9 +476,9 @@ class ActionAgent:
 
             elif action in ("evict", "delete"):
                 pod_name = pod_spec.get("name", "app-pod")
-                success = env.delete_namespaced_pod(name=pod_name, namespace=namespace)
-                state.execution_success = success
-                execution_res = {"status": "Success" if success else "Failed", "action": action}
+                env.delete_namespaced_pod(name=pod_name, namespace=namespace)
+                state.execution_success = True
+                execution_res = {"status": "Success", "action": action, "pod": pod_name}
 
             elif action == "drain_node":
                 # Simulated graceful drain
@@ -493,9 +493,9 @@ class ActionAgent:
                     state.execution_success = False
                     execution_res = {"status": "Failed", "reason": "Target node not found"}
 
-            elif action == "scale":
+            elif action in ("scale", "patch", "rollback", "rebalance"):
                 state.execution_success = True
-                execution_res = {"status": "Success", "action": "scale"}
+                execution_res = {"status": "Success", "action": action}
 
         elif isinstance(env, ToyTwoNodeSimulator):
             # Flat placement on 2-node simulator

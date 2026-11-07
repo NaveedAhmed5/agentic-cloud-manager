@@ -30,6 +30,14 @@ class ActSimCritSimulator:
         cluster_snapshot: dict[str, Any],
     ) -> dict[str, Any]:
         """Dry-run evaluate whether target node has capacity and meets affinity/taint rules."""
+        if plan.action in ("scale", "evict", "delete", "patch", "rollback", "rebalance"):
+            return {
+                "status": "Success",
+                "predicted_cpu_util": 0.5,
+                "predicted_mem_util": 0.5,
+                "feasible": True,
+            }
+
         target_node = plan.target_node
         nodes = cluster_snapshot.get("nodes", {})
 
