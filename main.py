@@ -10,6 +10,11 @@ from __future__ import annotations
 
 import argparse
 import sys
+from dotenv import load_dotenv
+
+# Ensure environment variables are loaded
+load_dotenv(override=True)
+
 from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
@@ -35,6 +40,18 @@ def run_demo() -> None:
     config = SystemConfig(use_k8s_trace_env=True, use_opa_guard=True, use_adv_sanitizer=True)
     orchestrator = GuardEdgeOrchestrator(config)
     env = K8sMultiNodeEmulator()
+
+    # Active LLM Mode Banner
+    if config.use_mock_llm:
+        console.print(
+            f"[bold yellow][CONFIG][/bold yellow] Mode: [bold magenta]MOCK SIMULATION (USE_MOCK_LLM=true)[/bold magenta] | "
+            f"Seed: [cyan]{config.seed}[/cyan] | K8s Mode: [cyan]{config.k8s_execution_mode}[/cyan]"
+        )
+    else:
+        console.print(
+            f"[bold yellow][CONFIG][/bold yellow] Mode: [bold green]LIVE GEMINI API (USE_MOCK_LLM=false)[/bold green] | "
+            f"Model: [cyan]{config.llm_model}[/cyan] | Base URL: [dim]{config.llm_base_url}[/dim]"
+        )
 
     # =========================================================================
     # Demo 1: Benign Trace Workload Scenario

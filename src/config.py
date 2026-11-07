@@ -18,9 +18,9 @@ from pydantic import BaseModel, Field, model_validator
 # Automatically locate and load .env file from project root
 _ENV_PATH = Path(__file__).resolve().parent.parent / ".env"
 if _ENV_PATH.exists():
-    load_dotenv(dotenv_path=_ENV_PATH)
+    load_dotenv(dotenv_path=_ENV_PATH, override=True)
 else:
-    load_dotenv()
+    load_dotenv(override=True)
 
 
 class SystemConfig(BaseModel):
@@ -69,19 +69,19 @@ class SystemConfig(BaseModel):
         description="Alias for seed to support environment configuration.",
     )
     use_mock_llm: bool = Field(
-        default=True,
+        default_factory=lambda: os.getenv("USE_MOCK_LLM", "false").lower() in ("true", "1", "yes"),
         description="Use deterministic mock LLM provider instead of live API calls.",
     )
     llm_api_key: str = Field(
-        default_factory=lambda: os.getenv("LLM_API_KEY", "your_api_key_here"),
+        default_factory=lambda: os.getenv("LLM_API_KEY", ""),
         description="API key for LLM orchestrator.",
     )
     llm_base_url: str = Field(
-        default_factory=lambda: os.getenv("LLM_BASE_URL", "https://api.openai.com/v1"),
+        default_factory=lambda: os.getenv("LLM_BASE_URL", "https://generativelanguage.googleapis.com/v1beta/openai/"),
         description="Base URL for OpenAI-compatible endpoint.",
     )
     llm_model: str = Field(
-        default_factory=lambda: os.getenv("LLM_MODEL", "gpt-4o-mini"),
+        default_factory=lambda: os.getenv("LLM_MODEL", "gemini-2.5-flash"),
         description="Target model identifier.",
     )
     k8s_execution_mode: Literal["emulator", "live_k8s"] = Field(
@@ -111,11 +111,11 @@ class SystemConfig(BaseModel):
     def from_env(cls, **overrides: Any) -> SystemConfig:
         """Instantiate SystemConfig reading from environment variables with optional overrides."""
         env_dict: dict[str, Any] = {
-            "use_mock_llm": os.getenv("USE_MOCK_LLM", "true").lower() in ("true", "1", "yes"),
+            "use_mock_llm": os.getenv("USE_MOCK_LLM", "false").lower() in ("true", "1", "yes"),
             "k8s_execution_mode": os.getenv("K8S_EXECUTION_MODE", "emulator"),
-            "llm_api_key": os.getenv("LLM_API_KEY", "your_api_key_here"),
-            "llm_base_url": os.getenv("LLM_BASE_URL", "https://api.openai.com/v1"),
-            "llm_model": os.getenv("LLM_MODEL", "gpt-4o-mini"),
+            "llm_api_key": os.getenv("LLM_API_KEY", ""),
+            "llm_base_url": os.getenv("LLM_BASE_URL", "https://generativelanguage.googleapis.com/v1beta/openai/"),
+            "llm_model": os.getenv("LLM_MODEL", "gemini-2.5-flash"),
             "random_seed": int(os.getenv("RANDOM_SEED", "42")),
             "seed": int(os.getenv("RANDOM_SEED", "42")),
         }

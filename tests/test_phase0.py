@@ -1,5 +1,6 @@
 """Unit tests for Phase 0 scaffolding: configuration flags, state schema, and ablation switches."""
 
+import os
 import pytest
 from src.config import SystemConfig
 from src.state import AgentGraphState, ProposedPlan, TrajectoryStep
@@ -15,7 +16,7 @@ def test_system_config_defaults():
     assert cfg.max_reflection_loops == 3
     assert cfg.seed == 42
     assert cfg.random_seed == 42
-    assert cfg.use_mock_llm is True
+    assert cfg.use_mock_llm == (os.getenv("USE_MOCK_LLM", "false").lower() in ("true", "1", "yes"))
     assert cfg.k8s_execution_mode == "emulator"
 
 

@@ -32,15 +32,16 @@ class LLMBackend:
         self.rng = random.Random(self.config.seed)
         self.client = None
 
-        if not self.config.use_mock_llm:
+        if self.config.llm_api_key and not self.config.use_mock_llm:
             try:
                 import openai
                 self.client = openai.OpenAI(
                     api_key=self.config.llm_api_key,
                     base_url=self.config.llm_base_url,
+                    timeout=20.0,
                 )
-            except Exception:
-                # Fall back to mock if client initialization fails
+            except Exception as e:
+                print(f"[GEMINI API ERROR] Live client initialization failed ({type(e).__name__}: {e}). Falling back to Mock LLM as last resort...")
                 self.client = None
 
     def generate(
@@ -54,21 +55,40 @@ class LLMBackend:
         prompt_tokens = len(system_prompt.split()) + len(user_prompt.split()) + 40
 
         if self.client and not self.config.use_mock_llm:
+            print(f"[GEMINI API CALL] Calling model '{self.config.llm_model}' at '{self.config.llm_base_url}'...")
             try:
-                response = self.client.chat.completions.create(
-                    model=self.config.llm_model,
-                    messages=[
-                        {"role": "system", "content": system_prompt},
-                        {"role": "user", "content": user_prompt},
-                    ],
-                    temperature=temperature,
-                )
+                model_to_use = self.config.llm_model
+                try:
+                    response = self.client.chat.completions.create(
+                        model=model_to_use,
+                        messages=[
+                            {"role": "system", "content": system_prompt},
+                            {"role": "user", "content": user_prompt},
+                        ],
+                        temperature=temperature,
+                    )
+                except Exception as model_err:
+                    # If Google returned 404 for gemini-2.5-flash (deprecated for new users), seamlessly use active gemini-3.5-flash
+                    if "404" in str(model_err) and model_to_use == "gemini-2.5-flash":
+                        model_to_use = "gemini-3.5-flash"
+                        response = self.client.chat.completions.create(
+                            model=model_to_use,
+                            messages=[
+                                {"role": "system", "content": system_prompt},
+                                {"role": "user", "content": user_prompt},
+                            ],
+                            temperature=temperature,
+                        )
+                    else:
+                        raise model_err
+
                 text = response.choices[0].message.content or ""
                 p_tok = response.usage.prompt_tokens if response.usage else prompt_tokens
                 c_tok = response.usage.completion_tokens if response.usage else len(text.split()) + 20
+                print(f"[GEMINI API SUCCESS] Model '{self.config.llm_model}' replied ({len(text)} chars, prompt_tokens={p_tok}, completion_tokens={c_tok}) | Preview: {text[:100].replace(chr(10), ' ')}...")
                 return text, p_tok, c_tok
-            except Exception:
-                pass  # Fall through to mock logic on network/auth error
+            except Exception as e:
+                print(f"[GEMINI API ERROR] Live call failed ({type(e).__name__}: {e}). Falling back to Mock LLM as last resort...")
 
         # Deterministic Mock LLM Generation
         completion_tokens = 120
@@ -161,6 +181,21 @@ class IntentAgent:
             "host_network": host_network,
         }
 
+        # If live Gemini is active, run live intent analysis
+        gemini_reasoning = ""
+        if not self.config.use_mock_llm and self.llm.client:
+            sys_prompt = (
+                "You are the IntentAgent in GuardEdge-K8s. Analyze operator intent and Prometheus telemetry alerts "
+                "into structured Kubernetes operational parameters (action, CPU, memory, namespace, securityContext). "
+                "Respond with a concise single-sentence summary of your operational analysis."
+            )
+            usr_prompt = f"Operator Intent: {intent_text}\nTelemetry: {json.dumps(telem)}"
+            gemini_text, p_tok, c_tok = self.llm.generate(sys_prompt, usr_prompt)
+            if gemini_text:
+                gemini_reasoning = f"[Gemini Intent Analysis]: {gemini_text.strip()} "
+                state.token_count += (p_tok + c_tok)
+                state.api_calls += 1
+
         elapsed_ms = round((time.perf_counter() - start_time) * 1000, 3)
         state.latency_ms = round(state.latency_ms + elapsed_ms, 3)
         state.api_calls += 1
@@ -169,7 +204,7 @@ class IntentAgent:
         state.add_trajectory_step(
             agent="IntentAgent",
             input={"intent": intent_text, "alerts": telem.get("active_alerts", [])},
-            reasoning=f"Parsed operational intent in {elapsed_ms}ms: action={action}, namespace={namespace}, CPU={cpu_req}, RAM={mem_req}.",
+            reasoning=f"{gemini_reasoning}Parsed operational intent in {elapsed_ms}ms: action={action}, namespace={namespace}, CPU={cpu_req}, RAM={mem_req}.",
             tool_call={"tool": "intent_parser", "schema": "k8s_operational_goal"},
             output=goal,
         )
@@ -218,6 +253,7 @@ class PlanningAgent:
     def __init__(self, config: Optional[SystemConfig] = None) -> None:
         self.config = config or SystemConfig()
         self.rng = random.Random(self.config.seed)
+        self.llm = LLMBackend(self.config)
 
     def plan(
         self,
@@ -307,6 +343,27 @@ class PlanningAgent:
         )
 
         state.proposed_plan = plan
+
+        # If live Gemini is active, generate placement reasoning
+        gemini_plan_reasoning = ""
+        if not self.config.use_mock_llm and self.llm.client:
+            sys_prompt = (
+                "You are the PlanningAgent in GuardEdge-K8s. Formulate Kubernetes orchestration plan "
+                "(pod placement, bin-packing, resource requests) considering node capacities and constraints. "
+                "Give a concise single-sentence justification for placement."
+            )
+            usr_prompt = (
+                f"Operational Goal: {json.dumps(goal)}\n"
+                f"Cluster Candidate: {target_node}\n"
+                f"Reflection Count: {state.reflection_count}\n"
+                f"Violations: {state.opa_violations}"
+            )
+            gemini_text, p_tok, c_tok = self.llm.generate(sys_prompt, usr_prompt)
+            if gemini_text:
+                gemini_plan_reasoning = f"[Gemini Planning]: {gemini_text.strip()} "
+                state.token_count += (p_tok + c_tok)
+                state.api_calls += 1
+
         elapsed_ms = round((time.perf_counter() - start_time) * 1000, 3)
         state.latency_ms = round(state.latency_ms + elapsed_ms, 3)
         state.api_calls += 1
@@ -315,7 +372,7 @@ class PlanningAgent:
         state.add_trajectory_step(
             agent="PlanningAgent",
             input={"goal": goal, "reflection_count": state.reflection_count},
-            reasoning=f"{replan_reasoning}Synthesized plan in {elapsed_ms}ms targeting node '{target_node}'.",
+            reasoning=f"{gemini_plan_reasoning}{replan_reasoning}Synthesized plan in {elapsed_ms}ms targeting node '{target_node}'.",
             tool_call={"tool": "k8s_manifest_planner", "action": action},
             output=plan.model_dump(),
         )
@@ -334,6 +391,7 @@ class CriticAgent:
     def __init__(self, config: Optional[SystemConfig] = None) -> None:
         self.config = config or SystemConfig()
         self.rng = random.Random(self.config.seed)
+        self.llm = LLMBackend(self.config)
 
     def evaluate(
         self,
@@ -347,6 +405,25 @@ class CriticAgent:
         if not plan:
             return False, "Critic: Missing proposed plan."
 
+        # If live Gemini is active, generate critique reasoning
+        gemini_critic_reasoning = ""
+        if not self.config.use_mock_llm and self.llm.client:
+            sys_prompt = (
+                "You are the CriticAgent in GuardEdge-K8s (ActSimCrit). Evaluate the offline dry-run simulation "
+                "and policy compliance of the proposed Kubernetes deployment plan. "
+                "Provide a concise single-sentence critique verdict."
+            )
+            usr_prompt = (
+                f"Plan: {json.dumps(plan.model_dump() if hasattr(plan, 'model_dump') else plan)}\n"
+                f"Sim Result: {json.dumps(sim_result)}\n"
+                f"OPA Passed: {state.opa_passed}"
+            )
+            gemini_text, p_tok, c_tok = self.llm.generate(sys_prompt, usr_prompt)
+            if gemini_text:
+                gemini_critic_reasoning = f"[Gemini Critique]: {gemini_text.strip()} "
+                state.token_count += (p_tok + c_tok)
+                state.api_calls += 1
+
         # ---------------------------------------------------------
         # Case A: OPA Guard Enabled (GuardEdge-K8s Proposed System)
         # ---------------------------------------------------------
@@ -355,19 +432,22 @@ class CriticAgent:
             if state.opa_passed is False:
                 violations_str = "; ".join(state.opa_violations)
                 feedback = f"Critic Rejection: Deterministic OPA policy violated: {violations_str}"
-                state.critic_feedback = feedback
-                self._log_trajectory(state, approved=False, reasoning=feedback, start_time=start_time)
+                full_feedback = f"{gemini_critic_reasoning}{feedback}" if gemini_critic_reasoning else feedback
+                state.critic_feedback = full_feedback
+                self._log_trajectory(state, approved=False, reasoning=full_feedback, start_time=start_time)
                 return False, feedback
 
             if sim_result.get("status") == "Failed":
                 feedback = f"Critic Rejection: Dry-run simulation failed: {sim_result.get('reason', 'insufficient resources')}"
-                state.critic_feedback = feedback
-                self._log_trajectory(state, approved=False, reasoning=feedback, start_time=start_time)
+                full_feedback = f"{gemini_critic_reasoning}{feedback}" if gemini_critic_reasoning else feedback
+                state.critic_feedback = full_feedback
+                self._log_trajectory(state, approved=False, reasoning=full_feedback, start_time=start_time)
                 return False, feedback
 
             feedback = "Critic Approval: Plan satisfies all OPA security policies and dry-run feasibility checks."
-            state.critic_feedback = feedback
-            self._log_trajectory(state, approved=True, reasoning=feedback, start_time=start_time)
+            full_feedback = f"{gemini_critic_reasoning}{feedback}" if gemini_critic_reasoning else feedback
+            state.critic_feedback = full_feedback
+            self._log_trajectory(state, approved=True, reasoning=full_feedback, start_time=start_time)
             return True, feedback
 
         # ---------------------------------------------------------
@@ -384,21 +464,24 @@ class CriticAgent:
             misses_security = (abs(hash(scenario_seed_key)) % 1000) < 150  # 15% breach slip-through rate
             if not misses_security:
                 feedback = "Critic Rejection (LLM): Container requests privileged execution which poses host risks."
-                state.critic_feedback = feedback
-                self._log_trajectory(state, approved=False, reasoning=feedback, start_time=start_time)
+                full_feedback = f"{gemini_critic_reasoning}{feedback}" if gemini_critic_reasoning else feedback
+                state.critic_feedback = full_feedback
+                self._log_trajectory(state, approved=False, reasoning=full_feedback, start_time=start_time)
                 return False, feedback
             else:
                 # LLM hallucinates approval for privileged container!
                 feedback = "Critic Approval (LLM Hallucination): Privileged container approved for troubleshooting."
-                state.critic_feedback = feedback
-                self._log_trajectory(state, approved=True, reasoning=feedback, start_time=start_time)
+                full_feedback = f"{gemini_critic_reasoning}{feedback}" if gemini_critic_reasoning else feedback
+                state.critic_feedback = full_feedback
+                self._log_trajectory(state, approved=True, reasoning=full_feedback, start_time=start_time)
                 return True, feedback
 
         # Stochastic deadlock on tight resource contention (simulating infinite loop)
         if sim_result.get("status") == "Failed":
             feedback = f"Critic Rejection (LLM): Dry-run failed on node '{target_node}'. Adjust resources."
-            state.critic_feedback = feedback
-            self._log_trajectory(state, approved=False, reasoning=feedback, start_time=start_time)
+            full_feedback = f"{gemini_critic_reasoning}{feedback}" if gemini_critic_reasoning else feedback
+            state.critic_feedback = full_feedback
+            self._log_trajectory(state, approved=False, reasoning=full_feedback, start_time=start_time)
             return False, feedback
 
         # Base paper ~78.3% success rate: 21.7% of scenarios become trapped in unresolvable negotiation loops
@@ -406,13 +489,15 @@ class CriticAgent:
         is_unresolvable_loop = (abs(hash(scenario_seed_key)) % 1000) < 217
         if is_unresolvable_loop:
             feedback = "Critic Rejection (LLM): Unresolved debate on node placement balance. Requesting further revision."
-            state.critic_feedback = feedback
-            self._log_trajectory(state, approved=False, reasoning=feedback, start_time=start_time)
+            full_feedback = f"{gemini_critic_reasoning}{feedback}" if gemini_critic_reasoning else feedback
+            state.critic_feedback = full_feedback
+            self._log_trajectory(state, approved=False, reasoning=full_feedback, start_time=start_time)
             return False, feedback
 
         feedback = "Critic Approval (LLM): Plan appears acceptable based on offline simulation."
-        state.critic_feedback = feedback
-        self._log_trajectory(state, approved=True, reasoning=feedback, start_time=start_time)
+        full_feedback = f"{gemini_critic_reasoning}{feedback}" if gemini_critic_reasoning else feedback
+        state.critic_feedback = full_feedback
+        self._log_trajectory(state, approved=True, reasoning=full_feedback, start_time=start_time)
         return True, feedback
 
     def _log_trajectory(self, state: AgentGraphState, approved: bool, reasoning: str, start_time: float) -> None:
