@@ -332,9 +332,6 @@ class K8sMultiNodeEmulator:
         mean_mem = sum(mem_utils) / len(mem_utils)
         composite_util = (mean_cpu + mean_mem) / 2.0
 
-        var_cpu = sum((c - mean_cpu) ** 2 for c in cpu_utils) / len(cpu_utils)
-        var_mem = sum((m - mean_mem) ** 2 for m in mem_utils) / len(mem_utils)
-
         # Multi-dimensional stranded resource gap: imbalance between CPU and Memory on individual workers
         stranded_penalties = [abs(c - m) for c, m in zip(cpu_utils, mem_utils)]
         mean_stranded_penalty = sum(stranded_penalties) / len(stranded_penalties)
@@ -362,8 +359,6 @@ class K8sMultiNodeEmulator:
             "mean_worker_cpu_util": round(mean_cpu * 100, 2),
             "mean_worker_mem_util": round(mean_mem * 100, 2),
             "composite_worker_util": round(composite_util * 100, 2),
-            "cpu_variance": round(var_cpu, 4),
-            "mem_variance": round(var_mem, 4),
             "active_worker_density": round(active_density * 100, 2),
             "stranded_penalty": round(mean_stranded_penalty, 4),
             "bin_packing_efficiency": bin_packing_efficiency,

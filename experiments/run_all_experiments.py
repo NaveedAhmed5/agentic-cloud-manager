@@ -555,7 +555,7 @@ def run_all_benchmarks() -> dict[str, Any]:
             "Deadlock Rate (%)": format_mean_std([r["deadlock_rate"] for r in runs]),
             "Resource Efficiency (%)": format_mean_std([r["bin_packing_efficiency"] for r in runs]),
             "Attack Detection Rate (%)": format_mean_std([r["detection_rate"] for r in adv_runs]),
-            "Latency (ms)": format_mean_std([r["latency_ms"] for r in runs], decimal=2),
+            "Latency (s)": format_mean_std([r["latency_ms"] / 1000.0 for r in runs], decimal=3),
         })
 
     _save_csv(RESULTS_DIR / "e5_ablation_study.csv", ablation_rows)
@@ -572,7 +572,7 @@ def run_all_benchmarks() -> dict[str, Any]:
     e6_rows = [
         {
             "System Architecture": "E1b: Single-Agent LLM",
-            "End-to-End Latency (ms)": format_mean_std([r["latency_ms"] for r in e1_single_runs], decimal=2),
+            "End-to-End Latency (s)": format_mean_std([r["latency_ms"] / 1000.0 for r in e1_single_runs], decimal=3),
             "OPA Overhead (ms)": "0.000 ± 0.000",
             "LLM API Calls / Scenario": format_mean_std([r["api_calls"] for r in e1_single_runs], decimal=1),
             "Tokens / Scenario": format_mean_std([r["token_count"] for r in e1_single_runs], decimal=1),
@@ -580,7 +580,7 @@ def run_all_benchmarks() -> dict[str, Any]:
         },
         {
             "System Architecture": "E2: AgentEdge Base Paper",
-            "End-to-End Latency (ms)": format_mean_std([r["latency_ms"] for r in e2_agentedge_k8s_runs], decimal=2),
+            "End-to-End Latency (s)": format_mean_std([r["latency_ms"] / 1000.0 for r in e2_agentedge_k8s_runs], decimal=3),
             "OPA Overhead (ms)": "0.000 ± 0.000",
             "LLM API Calls / Scenario": format_mean_std([r["api_calls"] for r in e2_agentedge_k8s_runs], decimal=1),
             "Tokens / Scenario": format_mean_std([r["token_count"] for r in e2_agentedge_k8s_runs], decimal=1),
@@ -588,7 +588,7 @@ def run_all_benchmarks() -> dict[str, Any]:
         },
         {
             "System Architecture": "E3: GuardEdge-K8s (Proposed)",
-            "End-to-End Latency (ms)": format_mean_std([r["latency_ms"] for r in e3_guardedge_runs], decimal=2),
+            "End-to-End Latency (s)": format_mean_std([r["latency_ms"] / 1000.0 for r in e3_guardedge_runs], decimal=3),
             "OPA Overhead (ms)": format_mean_std([r["opa_latency_ms"] for r in e3_guardedge_runs], decimal=3),
             "LLM API Calls / Scenario": format_mean_std([r["api_calls"] for r in e3_guardedge_runs], decimal=1),
             "Tokens / Scenario": format_mean_std([r["token_count"] for r in e3_guardedge_runs], decimal=1),
