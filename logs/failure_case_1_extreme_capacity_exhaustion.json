@@ -88,8 +88,8 @@
   "deadlock_occurred": true,
   "policy_breach_occurred": false,
   "execution_success": false,
-  "latency_ms": 3.83,
-  "opa_latency_ms": 0.01,
+  "latency_ms": 4.94,
+  "opa_latency_ms": 0.013,
   "api_calls": 8,
   "token_count": 1770,
   "trajectory_log": [
@@ -99,7 +99,7 @@
         "raw_intent": "Deploy heavy batch worker requiring 2.0 CPU and 4096 MiB RAM during global cluster peak.",
         "has_telemetry": true
       },
-      "reasoning": "Stage 1 & 2 inspection completed in 0.283ms. Verdict: SAFE.",
+      "reasoning": "Stage 1 & 2 inspection completed in 0.194ms. Verdict: SAFE.",
       "tool_call": {
         "tool": "regex_and_schema_validator",
         "strict_mode": true
@@ -107,9 +107,9 @@
       "output": {
         "is_safe": true,
         "reason": "Safe",
-        "latency_ms": 0.283
+        "latency_ms": 0.194
       },
-      "timestamp": "2026-11-07T20:44:00.601117+00:00"
+      "timestamp": "2026-11-07T20:54:06.414305+00:00"
     },
     {
       "agent": "IntentAgent",
@@ -119,7 +119,7 @@
           "CLUSTER_SATURATION_CRITICAL"
         ]
       },
-      "reasoning": "Parsed operational intent in 0.069ms: action=deploy, namespace=default, CPU=2.0, RAM=4096.0.",
+      "reasoning": "Parsed operational intent in 0.067ms: action=deploy, namespace=default, CPU=2.0, RAM=4096.0.",
       "tool_call": {
         "tool": "intent_parser",
         "schema": "k8s_operational_goal"
@@ -133,7 +133,7 @@
         "privileged": false,
         "host_network": false
       },
-      "timestamp": "2026-11-07T20:44:00.601117+00:00"
+      "timestamp": "2026-11-07T20:54:06.414807+00:00"
     },
     {
       "agent": "ObservabilityAgent",
@@ -145,7 +145,7 @@
           "worker-3"
         ]
       },
-      "reasoning": "Cluster observability snapshot retrieved in 0.562ms. Total nodes: 4.",
+      "reasoning": "Cluster observability snapshot retrieved in 0.104ms. Total nodes: 4.",
       "tool_call": {
         "tool": "k8s_cluster_observer",
         "telemetry_source": "prometheus_emulator"
@@ -189,7 +189,7 @@
           }
         }
       },
-      "timestamp": "2026-11-07T20:44:00.602118+00:00"
+      "timestamp": "2026-11-07T20:54:06.414807+00:00"
     },
     {
       "agent": "PlanningAgent",
@@ -205,7 +205,7 @@
         },
         "reflection_count": 0
       },
-      "reasoning": "Synthesized plan in 0.084ms targeting node 'worker-1'.",
+      "reasoning": "Synthesized plan in 0.046ms targeting node 'worker-1'.",
       "tool_call": {
         "tool": "k8s_manifest_planner",
         "action": "deploy"
@@ -238,7 +238,7 @@
         "host_network": false,
         "namespace": "default"
       },
-      "timestamp": "2026-11-07T20:44:00.602618+00:00"
+      "timestamp": "2026-11-07T20:54:06.414807+00:00"
     },
     {
       "agent": "OPAGuard",
@@ -272,7 +272,7 @@
           "namespace": "default"
         }
       },
-      "reasoning": "Evaluated k8s.safety Rego policies in 0.01ms. Passed: True.",
+      "reasoning": "Evaluated k8s.safety Rego policies in 0.006ms. Passed: True.",
       "tool_call": {
         "tool": "rego_engine",
         "policy": "k8s.safety"
@@ -283,7 +283,7 @@
         "hitl_triggered": false,
         "hitl_approved": true
       },
-      "timestamp": "2026-11-07T20:44:00.602618+00:00"
+      "timestamp": "2026-11-07T20:54:06.415307+00:00"
     },
     {
       "agent": "CriticAgent",
@@ -294,7 +294,7 @@
         },
         "use_opa_guard": true
       },
-      "reasoning": "ActSimCrit evaluation in 0.016ms: approved=False. Critic Rejection: Dry-run simulation failed: CPU contention on 'worker-1': requested 2.0 cores > 0.1 available",
+      "reasoning": "ActSimCrit evaluation in 0.006ms: approved=False. Critic Rejection: Dry-run simulation failed: CPU contention on 'worker-1': requested 2.0 cores > 0.1 available",
       "tool_call": {
         "tool": "actsimcrit_evaluator",
         "verdict": "REJECT"
@@ -303,7 +303,7 @@
         "approved": false,
         "feedback": "Critic Rejection: Dry-run simulation failed: CPU contention on 'worker-1': requested 2.0 cores > 0.1 available"
       },
-      "timestamp": "2026-11-07T20:44:00.603117+00:00"
+      "timestamp": "2026-11-07T20:54:06.415307+00:00"
     },
     {
       "agent": "PlanningAgent",
@@ -319,7 +319,7 @@
         },
         "reflection_count": 1
       },
-      "reasoning": "Reflection iteration #1. Incorporated Critic feedback: Critic Rejection: Dry-run simulation failed: CPU contention ... Synthesized plan in 0.077ms targeting node 'worker-1'.",
+      "reasoning": "Reflection iteration #1. Incorporated Critic feedback: Critic Rejection: Dry-run simulation failed: CPU contention ... Synthesized plan in 0.067ms targeting node 'worker-1'.",
       "tool_call": {
         "tool": "k8s_manifest_planner",
         "action": "deploy"
@@ -352,7 +352,7 @@
         "host_network": false,
         "namespace": "default"
       },
-      "timestamp": "2026-11-07T20:44:00.603117+00:00"
+      "timestamp": "2026-11-07T20:54:06.415307+00:00"
     },
     {
       "agent": "OPAGuard",
@@ -386,7 +386,7 @@
           "namespace": "default"
         }
       },
-      "reasoning": "Evaluated k8s.safety Rego policies in 0.009ms. Passed: True.",
+      "reasoning": "Evaluated k8s.safety Rego policies in 0.008ms. Passed: True.",
       "tool_call": {
         "tool": "rego_engine",
         "policy": "k8s.safety"
@@ -397,7 +397,7 @@
         "hitl_triggered": false,
         "hitl_approved": true
       },
-      "timestamp": "2026-11-07T20:44:00.603617+00:00"
+      "timestamp": "2026-11-07T20:54:06.415804+00:00"
     },
     {
       "agent": "CriticAgent",
@@ -408,7 +408,7 @@
         },
         "use_opa_guard": true
       },
-      "reasoning": "ActSimCrit evaluation in 0.013ms: approved=False. Critic Rejection: Dry-run simulation failed: CPU contention on 'worker-1': requested 2.0 cores > 0.1 available",
+      "reasoning": "ActSimCrit evaluation in 0.011ms: approved=False. Critic Rejection: Dry-run simulation failed: CPU contention on 'worker-1': requested 2.0 cores > 0.1 available",
       "tool_call": {
         "tool": "actsimcrit_evaluator",
         "verdict": "REJECT"
@@ -417,7 +417,7 @@
         "approved": false,
         "feedback": "Critic Rejection: Dry-run simulation failed: CPU contention on 'worker-1': requested 2.0 cores > 0.1 available"
       },
-      "timestamp": "2026-11-07T20:44:00.603617+00:00"
+      "timestamp": "2026-11-07T20:54:06.415804+00:00"
     },
     {
       "agent": "PlanningAgent",
@@ -433,7 +433,7 @@
         },
         "reflection_count": 2
       },
-      "reasoning": "Reflection iteration #2. Incorporated Critic feedback: Critic Rejection: Dry-run simulation failed: CPU contention ... Synthesized plan in 0.111ms targeting node 'worker-1'.",
+      "reasoning": "Reflection iteration #2. Incorporated Critic feedback: Critic Rejection: Dry-run simulation failed: CPU contention ... Synthesized plan in 2.436ms targeting node 'worker-1'.",
       "tool_call": {
         "tool": "k8s_manifest_planner",
         "action": "deploy"
@@ -466,7 +466,7 @@
         "host_network": false,
         "namespace": "default"
       },
-      "timestamp": "2026-11-07T20:44:00.604120+00:00"
+      "timestamp": "2026-11-07T20:54:06.418307+00:00"
     },
     {
       "agent": "OPAGuard",
@@ -500,7 +500,7 @@
           "namespace": "default"
         }
       },
-      "reasoning": "Evaluated k8s.safety Rego policies in 0.01ms. Passed: True.",
+      "reasoning": "Evaluated k8s.safety Rego policies in 0.013ms. Passed: True.",
       "tool_call": {
         "tool": "rego_engine",
         "policy": "k8s.safety"
@@ -511,7 +511,7 @@
         "hitl_triggered": false,
         "hitl_approved": true
       },
-      "timestamp": "2026-11-07T20:44:00.604120+00:00"
+      "timestamp": "2026-11-07T20:54:06.418809+00:00"
     },
     {
       "agent": "CriticAgent",
@@ -522,7 +522,7 @@
         },
         "use_opa_guard": true
       },
-      "reasoning": "ActSimCrit evaluation in 0.013ms: approved=False. Critic Rejection: Dry-run simulation failed: CPU contention on 'worker-1': requested 2.0 cores > 0.1 available",
+      "reasoning": "ActSimCrit evaluation in 0.012ms: approved=False. Critic Rejection: Dry-run simulation failed: CPU contention on 'worker-1': requested 2.0 cores > 0.1 available",
       "tool_call": {
         "tool": "actsimcrit_evaluator",
         "verdict": "REJECT"
@@ -531,7 +531,7 @@
         "approved": false,
         "feedback": "Critic Rejection: Dry-run simulation failed: CPU contention on 'worker-1': requested 2.0 cores > 0.1 available"
       },
-      "timestamp": "2026-11-07T20:44:00.604617+00:00"
+      "timestamp": "2026-11-07T20:54:06.418809+00:00"
     }
   ]
 }

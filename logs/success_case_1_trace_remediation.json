@@ -106,8 +106,8 @@
   "deadlock_occurred": false,
   "policy_breach_occurred": false,
   "execution_success": true,
-  "latency_ms": 2.67,
-  "opa_latency_ms": 0.011,
+  "latency_ms": 2.53,
+  "opa_latency_ms": 0.01,
   "api_calls": 5,
   "token_count": 1000,
   "trajectory_log": [
@@ -117,7 +117,7 @@
         "raw_intent": "Alibaba Trace #1: Schedule heavy analytical batch container 'test_trace_001-etl' requiring 1.0 CPU and 1536.0 MiB RAM under tight contention.",
         "has_telemetry": true
       },
-      "reasoning": "Stage 1 & 2 inspection completed in 0.573ms. Verdict: SAFE.",
+      "reasoning": "Stage 1 & 2 inspection completed in 0.686ms. Verdict: SAFE.",
       "tool_call": {
         "tool": "regex_and_schema_validator",
         "strict_mode": true
@@ -125,9 +125,9 @@
       "output": {
         "is_safe": true,
         "reason": "Safe",
-        "latency_ms": 0.573
+        "latency_ms": 0.686
       },
-      "timestamp": "2026-11-07T20:44:00.587618+00:00"
+      "timestamp": "2026-11-07T20:54:06.405806+00:00"
     },
     {
       "agent": "IntentAgent",
@@ -137,7 +137,7 @@
           "RESOURCE_CONTENTION_PRESSURE"
         ]
       },
-      "reasoning": "Parsed operational intent in 0.122ms: action=deploy, namespace=default, CPU=1.0, RAM=1536.0.",
+      "reasoning": "Parsed operational intent in 0.129ms: action=deploy, namespace=default, CPU=1.0, RAM=1536.0.",
       "tool_call": {
         "tool": "intent_parser",
         "schema": "k8s_operational_goal"
@@ -151,7 +151,7 @@
         "privileged": false,
         "host_network": false
       },
-      "timestamp": "2026-11-07T20:44:00.587618+00:00"
+      "timestamp": "2026-11-07T20:54:06.406308+00:00"
     },
     {
       "agent": "ObservabilityAgent",
@@ -163,7 +163,7 @@
           "worker-3"
         ]
       },
-      "reasoning": "Cluster observability snapshot retrieved in 0.177ms. Total nodes: 4.",
+      "reasoning": "Cluster observability snapshot retrieved in 0.207ms. Total nodes: 4.",
       "tool_call": {
         "tool": "k8s_cluster_observer",
         "telemetry_source": "prometheus_emulator"
@@ -207,7 +207,7 @@
           }
         }
       },
-      "timestamp": "2026-11-07T20:44:00.588118+00:00"
+      "timestamp": "2026-11-07T20:54:06.406308+00:00"
     },
     {
       "agent": "PlanningAgent",
@@ -223,7 +223,7 @@
         },
         "reflection_count": 0
       },
-      "reasoning": "Synthesized plan in 0.141ms targeting node 'worker-3'.",
+      "reasoning": "Synthesized plan in 0.101ms targeting node 'worker-3'.",
       "tool_call": {
         "tool": "k8s_manifest_planner",
         "action": "deploy"
@@ -256,7 +256,7 @@
         "host_network": false,
         "namespace": "default"
       },
-      "timestamp": "2026-11-07T20:44:00.588118+00:00"
+      "timestamp": "2026-11-07T20:54:06.406806+00:00"
     },
     {
       "agent": "OPAGuard",
@@ -290,7 +290,7 @@
           "namespace": "default"
         }
       },
-      "reasoning": "Evaluated k8s.safety Rego policies in 0.011ms. Passed: True.",
+      "reasoning": "Evaluated k8s.safety Rego policies in 0.01ms. Passed: True.",
       "tool_call": {
         "tool": "rego_engine",
         "policy": "k8s.safety"
@@ -301,7 +301,7 @@
         "hitl_triggered": false,
         "hitl_approved": true
       },
-      "timestamp": "2026-11-07T20:44:00.588617+00:00"
+      "timestamp": "2026-11-07T20:54:06.407306+00:00"
     },
     {
       "agent": "CriticAgent",
@@ -314,7 +314,7 @@
         },
         "use_opa_guard": true
       },
-      "reasoning": "ActSimCrit evaluation in 0.013ms: approved=True. Critic Approval: Plan satisfies all OPA security policies and dry-run feasibility checks.",
+      "reasoning": "ActSimCrit evaluation in 0.01ms: approved=True. Critic Approval: Plan satisfies all OPA security policies and dry-run feasibility checks.",
       "tool_call": {
         "tool": "actsimcrit_evaluator",
         "verdict": "APPROVE"
@@ -323,7 +323,7 @@
         "approved": true,
         "feedback": "Critic Approval: Plan satisfies all OPA security policies and dry-run feasibility checks."
       },
-      "timestamp": "2026-11-07T20:44:00.588617+00:00"
+      "timestamp": "2026-11-07T20:54:06.407306+00:00"
     },
     {
       "agent": "ActionAgent",
@@ -332,7 +332,7 @@
         "target_node": "worker-3",
         "namespace": "default"
       },
-      "reasoning": "Enforced action 'deploy' on cluster in 0.25ms. Execution success: True.",
+      "reasoning": "Enforced action 'deploy' on cluster in 0.154ms. Execution success: True.",
       "tool_call": {
         "tool": "k8s_python_sdk",
         "action": "deploy"
@@ -374,7 +374,7 @@
           "node": "worker-3"
         }
       },
-      "timestamp": "2026-11-07T20:44:00.589117+00:00"
+      "timestamp": "2026-11-07T20:54:06.407809+00:00"
     }
   ]
 }
