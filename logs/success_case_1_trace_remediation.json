@@ -1,0 +1,380 @@
+{
+  "scenario_id": "test_trace_001",
+  "raw_intent": "Alibaba Trace #1: Schedule heavy analytical batch container 'test_trace_001-etl' requiring 1.0 CPU and 1536.0 MiB RAM under tight contention.",
+  "telemetry_log": {
+    "timestamp": "2026-11-06T14:30:00Z",
+    "alibaba_trace_event_id": "evt_2018_107",
+    "active_alerts": [
+      "RESOURCE_CONTENTION_PRESSURE"
+    ],
+    "cluster_metrics": {
+      "worker-1": {
+        "cpu_util_pct": 79.4,
+        "mem_util_pct": 58.1
+      },
+      "worker-2": {
+        "cpu_util_pct": 37.2,
+        "mem_util_pct": 56.1
+      },
+      "worker-3": {
+        "cpu_util_pct": 55.2,
+        "mem_util_pct": 59.9
+      }
+    }
+  },
+  "sanitized_intent": "Alibaba Trace #1: Schedule heavy analytical batch container 'test_trace_001-etl' requiring 1.0 CPU and 1536.0 MiB RAM under tight contention.",
+  "is_adversarial_blocked": false,
+  "cluster_snapshot": {
+    "total_nodes": 4,
+    "total_cpu_cores": 20.0,
+    "allocated_cpu_cores": 10.05,
+    "cpu_utilization_pct": 50.25,
+    "total_mem_mib": 40960.0,
+    "allocated_mem_mib": 19013.6,
+    "mem_utilization_pct": 46.42,
+    "nodes": {
+      "control-plane-1": {
+        "cpu_util": 0.0,
+        "mem_util": 0.0,
+        "cpu_free": 4.0,
+        "mem_free": 8192.0,
+        "pod_count": 0
+      },
+      "worker-1": {
+        "cpu_util": 0.7937,
+        "mem_util": 0.5806,
+        "cpu_free": 1.65,
+        "mem_free": 6871.5,
+        "pod_count": 0
+      },
+      "worker-2": {
+        "cpu_util": 0.3725,
+        "mem_util": 0.5606,
+        "cpu_free": 2.51,
+        "mem_free": 3599.7,
+        "pod_count": 0
+      },
+      "worker-3": {
+        "cpu_util": 0.5525,
+        "mem_util": 0.5992,
+        "cpu_free": 1.79,
+        "mem_free": 3283.2,
+        "pod_count": 0
+      }
+    }
+  },
+  "proposed_plan": {
+    "action": "deploy",
+    "target_node": "worker-3",
+    "pod_spec": {
+      "name": "test_trace_001-pod",
+      "containers": [
+        {
+          "name": "app",
+          "image": "registry.k8s.io/pause:3.9",
+          "resources": {
+            "requests": {
+              "cpu": "1.0",
+              "memory": "1536.0Mi"
+            }
+          },
+          "securityContext": {
+            "privileged": false
+          }
+        }
+      ],
+      "hostNetwork": false
+    },
+    "cpu_req": 1.0,
+    "mem_req": 1536.0,
+    "privileged": false,
+    "host_network": false,
+    "namespace": "default"
+  },
+  "sim_result": {
+    "status": "Success",
+    "predicted_cpu_util": 0.677,
+    "predicted_mem_util": 0.693,
+    "feasible": true
+  },
+  "critic_feedback": "Critic Approval: Plan satisfies all OPA security policies and dry-run feasibility checks.",
+  "opa_passed": true,
+  "opa_violations": [],
+  "hitl_triggered": false,
+  "hitl_approved": true,
+  "reflection_count": 0,
+  "deadlock_occurred": false,
+  "policy_breach_occurred": false,
+  "execution_success": true,
+  "latency_ms": 2.67,
+  "opa_latency_ms": 0.011,
+  "api_calls": 5,
+  "token_count": 1000,
+  "trajectory_log": [
+    {
+      "agent": "AdversarialSanitizer",
+      "input": {
+        "raw_intent": "Alibaba Trace #1: Schedule heavy analytical batch container 'test_trace_001-etl' requiring 1.0 CPU and 1536.0 MiB RAM under tight contention.",
+        "has_telemetry": true
+      },
+      "reasoning": "Stage 1 & 2 inspection completed in 0.573ms. Verdict: SAFE.",
+      "tool_call": {
+        "tool": "regex_and_schema_validator",
+        "strict_mode": true
+      },
+      "output": {
+        "is_safe": true,
+        "reason": "Safe",
+        "latency_ms": 0.573
+      },
+      "timestamp": "2026-11-07T20:44:00.587618+00:00"
+    },
+    {
+      "agent": "IntentAgent",
+      "input": {
+        "intent": "Alibaba Trace #1: Schedule heavy analytical batch container 'test_trace_001-etl' requiring 1.0 CPU and 1536.0 MiB RAM under tight contention.",
+        "alerts": [
+          "RESOURCE_CONTENTION_PRESSURE"
+        ]
+      },
+      "reasoning": "Parsed operational intent in 0.122ms: action=deploy, namespace=default, CPU=1.0, RAM=1536.0.",
+      "tool_call": {
+        "tool": "intent_parser",
+        "schema": "k8s_operational_goal"
+      },
+      "output": {
+        "action": "deploy",
+        "target_node": null,
+        "namespace": "default",
+        "cpu_req": 1.0,
+        "mem_req": 1536.0,
+        "privileged": false,
+        "host_network": false
+      },
+      "timestamp": "2026-11-07T20:44:00.587618+00:00"
+    },
+    {
+      "agent": "ObservabilityAgent",
+      "input": {
+        "cluster_nodes": [
+          "control-plane-1",
+          "worker-1",
+          "worker-2",
+          "worker-3"
+        ]
+      },
+      "reasoning": "Cluster observability snapshot retrieved in 0.177ms. Total nodes: 4.",
+      "tool_call": {
+        "tool": "k8s_cluster_observer",
+        "telemetry_source": "prometheus_emulator"
+      },
+      "output": {
+        "total_nodes": 4,
+        "total_cpu_cores": 20.0,
+        "allocated_cpu_cores": 10.05,
+        "cpu_utilization_pct": 50.25,
+        "total_mem_mib": 40960.0,
+        "allocated_mem_mib": 19013.6,
+        "mem_utilization_pct": 46.42,
+        "nodes": {
+          "control-plane-1": {
+            "cpu_util": 0.0,
+            "mem_util": 0.0,
+            "cpu_free": 4.0,
+            "mem_free": 8192.0,
+            "pod_count": 0
+          },
+          "worker-1": {
+            "cpu_util": 0.7937,
+            "mem_util": 0.5806,
+            "cpu_free": 1.65,
+            "mem_free": 6871.5,
+            "pod_count": 0
+          },
+          "worker-2": {
+            "cpu_util": 0.3725,
+            "mem_util": 0.5606,
+            "cpu_free": 2.51,
+            "mem_free": 3599.7,
+            "pod_count": 0
+          },
+          "worker-3": {
+            "cpu_util": 0.5525,
+            "mem_util": 0.5992,
+            "cpu_free": 1.79,
+            "mem_free": 3283.2,
+            "pod_count": 0
+          }
+        }
+      },
+      "timestamp": "2026-11-07T20:44:00.588118+00:00"
+    },
+    {
+      "agent": "PlanningAgent",
+      "input": {
+        "goal": {
+          "action": "deploy",
+          "target_node": null,
+          "namespace": "default",
+          "cpu_req": 1.0,
+          "mem_req": 1536.0,
+          "privileged": false,
+          "host_network": false
+        },
+        "reflection_count": 0
+      },
+      "reasoning": "Synthesized plan in 0.141ms targeting node 'worker-3'.",
+      "tool_call": {
+        "tool": "k8s_manifest_planner",
+        "action": "deploy"
+      },
+      "output": {
+        "action": "deploy",
+        "target_node": "worker-3",
+        "pod_spec": {
+          "name": "test_trace_001-pod",
+          "containers": [
+            {
+              "name": "app",
+              "image": "registry.k8s.io/pause:3.9",
+              "resources": {
+                "requests": {
+                  "cpu": "1.0",
+                  "memory": "1536.0Mi"
+                }
+              },
+              "securityContext": {
+                "privileged": false
+              }
+            }
+          ],
+          "hostNetwork": false
+        },
+        "cpu_req": 1.0,
+        "mem_req": 1536.0,
+        "privileged": false,
+        "host_network": false,
+        "namespace": "default"
+      },
+      "timestamp": "2026-11-07T20:44:00.588118+00:00"
+    },
+    {
+      "agent": "OPAGuard",
+      "input": {
+        "proposed_plan": {
+          "action": "deploy",
+          "target_node": "worker-3",
+          "pod_spec": {
+            "name": "test_trace_001-pod",
+            "containers": [
+              {
+                "name": "app",
+                "image": "registry.k8s.io/pause:3.9",
+                "resources": {
+                  "requests": {
+                    "cpu": "1.0",
+                    "memory": "1536.0Mi"
+                  }
+                },
+                "securityContext": {
+                  "privileged": false
+                }
+              }
+            ],
+            "hostNetwork": false
+          },
+          "cpu_req": 1.0,
+          "mem_req": 1536.0,
+          "privileged": false,
+          "host_network": false,
+          "namespace": "default"
+        }
+      },
+      "reasoning": "Evaluated k8s.safety Rego policies in 0.011ms. Passed: True.",
+      "tool_call": {
+        "tool": "rego_engine",
+        "policy": "k8s.safety"
+      },
+      "output": {
+        "passed": true,
+        "violations": [],
+        "hitl_triggered": false,
+        "hitl_approved": true
+      },
+      "timestamp": "2026-11-07T20:44:00.588617+00:00"
+    },
+    {
+      "agent": "CriticAgent",
+      "input": {
+        "sim_result": {
+          "status": "Success",
+          "predicted_cpu_util": 0.677,
+          "predicted_mem_util": 0.693,
+          "feasible": true
+        },
+        "use_opa_guard": true
+      },
+      "reasoning": "ActSimCrit evaluation in 0.013ms: approved=True. Critic Approval: Plan satisfies all OPA security policies and dry-run feasibility checks.",
+      "tool_call": {
+        "tool": "actsimcrit_evaluator",
+        "verdict": "APPROVE"
+      },
+      "output": {
+        "approved": true,
+        "feedback": "Critic Approval: Plan satisfies all OPA security policies and dry-run feasibility checks."
+      },
+      "timestamp": "2026-11-07T20:44:00.588617+00:00"
+    },
+    {
+      "agent": "ActionAgent",
+      "input": {
+        "action": "deploy",
+        "target_node": "worker-3",
+        "namespace": "default"
+      },
+      "reasoning": "Enforced action 'deploy' on cluster in 0.25ms. Execution success: True.",
+      "tool_call": {
+        "tool": "k8s_python_sdk",
+        "action": "deploy"
+      },
+      "output": {
+        "status": "Running",
+        "node": "worker-3",
+        "pod": {
+          "metadata": {
+            "name": "test_trace_001-pod",
+            "namespace": "default"
+          },
+          "namespace": "default",
+          "spec": {
+            "nodeName": "worker-3",
+            "containers": [
+              {
+                "name": "app",
+                "image": "registry.k8s.io/pause:3.9",
+                "resources": {
+                  "requests": {
+                    "cpu": "1.0",
+                    "memory": "1536.0Mi"
+                  }
+                },
+                "securityContext": {
+                  "privileged": false
+                }
+              }
+            ]
+          },
+          "status": {
+            "phase": "Running",
+            "hostIP": "worker-3",
+            "nodeName": "worker-3"
+          },
+          "cpu_req": 1.0,
+          "mem_req": 1536.0,
+          "node": "worker-3"
+        }
+      },
+      "timestamp": "2026-11-07T20:44:00.589117+00:00"
+    }
+  ]
+}

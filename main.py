@@ -146,11 +146,8 @@ def run_demo() -> None:
 def run_all_experiments() -> None:
     """Execute complete E1-E6 experimental benchmark suite and output metrics."""
     console.print("[bold cyan]Running Full E1-E6 Experimental Evaluation Suite...[/bold cyan]")
-    try:
-        from experiments.run_experiments import run_benchmarks
-        run_benchmarks()
-    except ImportError:
-        console.print("[yellow]experiments/run_experiments.py not yet populated; placeholder initialized.[/yellow]")
+    from experiments.run_all_experiments import run_all_benchmarks
+    run_all_benchmarks()
 
 
 def main() -> None:

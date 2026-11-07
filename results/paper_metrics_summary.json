@@ -1,0 +1,129 @@
+{
+  "metadata": {
+    "project": "GuardEdge-K8s",
+    "timestamp": "2026-11-08T01:30:00Z",
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "test_traces_count": 100,
+    "adversarial_scenarios_count": 40
+  },
+  "E1_KubeScheduler": {
+    "success_rate": [
+      85.0,
+      0.0
+    ],
+    "policy_breach_rate": [
+      15.0,
+      0.0
+    ],
+    "bin_packing_efficiency": [
+      55.42,
+      0.0
+    ],
+    "latency_ms": [
+      0.38,
+      0.46
+    ]
+  },
+  "E1_SingleAgentLLM": {
+    "success_rate": [
+      85.0,
+      0.0
+    ],
+    "policy_breach_rate": [
+      15.0,
+      0.0
+    ],
+    "bin_packing_efficiency": [
+      54.47,
+      0.0
+    ],
+    "token_count": [
+      500.0,
+      0.0
+    ]
+  },
+  "E2_BasePaper_Toy2Node": {
+    "success_rate": [
+      76.33,
+      4.62
+    ],
+    "policy_breach_rate": [
+      2.0,
+      1.0
+    ],
+    "deadlock_rate": [
+      23.67,
+      4.62
+    ]
+  },
+  "E2_BasePaper_K8sTrace": {
+    "success_rate": [
+      60.33,
+      4.16
+    ],
+    "policy_breach_rate": [
+      2.0,
+      1.0
+    ],
+    "deadlock_rate": [
+      37.67,
+      4.04
+    ]
+  },
+  "E3_GuardEdge_K8s": {
+    "success_rate": [
+      93.0,
+      0.0
+    ],
+    "policy_breach_rate": [
+      0.0,
+      0.0
+    ],
+    "deadlock_rate": [
+      0.0,
+      0.0
+    ],
+    "bin_packing_efficiency": [
+      66.41,
+      0.0
+    ],
+    "efficiency_gain_over_kube_scheduler": [
+      19.83,
+      0.0
+    ],
+    "latency_ms": [
+      3.15,
+      1.1
+    ],
+    "opa_latency_ms": [
+      0.01,
+      0.0
+    ],
+    "api_calls": [
+      5.5,
+      0.0
+    ],
+    "token_count": [
+      1122.9,
+      0.0
+    ]
+  },
+  "E4_Adversarial_Defense": {
+    "detection_rate": [
+      100.0,
+      0.0
+    ],
+    "false_positive_rate": [
+      0.0,
+      0.0
+    ],
+    "clean_task_success": [
+      65.0,
+      0.0
+    ]
+  }
+}

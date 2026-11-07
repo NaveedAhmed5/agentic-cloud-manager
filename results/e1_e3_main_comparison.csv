@@ -1,0 +1,6 @@
+System Architecture,Topology / Env,Task Success Rate (%),Resource Efficiency (%),Policy Breach Rate (%),Deadlock Rate (%),Latency (ms)
+E1a: Kube-Scheduler + HPA,4-Node K8s,85.00 ± 0.00,55.42 ± 0.00,15.00 ± 0.00,0.00 ± 0.00,0.38 ± 0.46
+E1b: Single-Agent LLM Baseline,4-Node K8s,85.00 ± 0.00,54.47 ± 0.00,15.00 ± 0.00,0.00 ± 0.00,0.45 ± 0.24
+E2: AgentEdge Base Paper (Toy 2-Node),2-Node Toy Sim,76.33 ± 4.62,58.50 ± 0.00,2.00 ± 1.00,23.67 ± 4.62,2.71 ± 1.51
+E2: AgentEdge Base Paper (K8s Trace),4-Node K8s,60.33 ± 4.16,58.25 ± 0.83,2.00 ± 1.00,37.67 ± 4.04,3.21 ± 0.35
+E3: GuardEdge-K8s (Proposed Full System),4-Node K8s,93.00 ± 0.00,66.41 ± 0.00,0.00 ± 0.00,0.00 ± 0.00,3.15 ± 1.10

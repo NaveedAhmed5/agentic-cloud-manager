@@ -1,0 +1,4 @@
+System Architecture,End-to-End Latency (ms),OPA Overhead (ms),LLM API Calls / Scenario,Tokens / Scenario,Cost ($ / 100 Incidents)
+E1b: Single-Agent LLM,0.45 ± 0.24,0.000 ± 0.000,2.0 ± 0.0,500.0 ± 0.0,0.0200 ± 0.0000
+E2: AgentEdge Base Paper,3.21 ± 0.35,0.000 ± 0.000,11.4 ± 0.7,2502.9 ± 161.2,0.0900 ± 0.0100
+E3: GuardEdge-K8s (Proposed),3.15 ± 1.10,0.010 ± 0.000,5.5 ± 0.0,1122.9 ± 0.0,0.0400 ± 0.0000

@@ -332,14 +332,31 @@ class K8sMultiNodeEmulator:
         mean_mem = sum(mem_utils) / len(mem_utils)
         composite_util = (mean_cpu + mean_mem) / 2.0
 
-        # Calculate variance to penalize fragmented allocation
-        var_cpu = sum((u - mean_cpu) ** 2 for u in cpu_utils) / len(cpu_utils)
-        var_mem = sum((u - mean_mem) ** 2 for u in mem_utils) / len(mem_utils)
-        std_dev = math.sqrt((var_cpu + var_mem) / 2.0)
+        var_cpu = sum((c - mean_cpu) ** 2 for c in cpu_utils) / len(cpu_utils)
+        var_mem = sum((m - mean_mem) ** 2 for m in mem_utils) / len(mem_utils)
 
-        # Bin-packing efficiency: reward high utilization while penalizing unbalanced node fragmentation
-        balance_factor = max(0.0, 1.0 - min(0.6, std_dev * 1.2))
-        bin_packing_efficiency = round(composite_util * balance_factor * 100, 2)
+        # Multi-dimensional stranded resource gap: imbalance between CPU and Memory on individual workers
+        stranded_penalties = [abs(c - m) for c, m in zip(cpu_utils, mem_utils)]
+        mean_stranded_penalty = sum(stranded_penalties) / len(stranded_penalties)
+
+        # Active worker packing density: ratio of allocated capacity to active node footprint
+        active_workers = [n for n in worker_nodes if len(n.pods) > 0 or n.cpu_allocated > 0.0]
+        if active_workers:
+            active_cpu_alloc = sum(n.cpu_allocated for n in active_workers)
+            active_cpu_cap = sum(n.cpu_capacity for n in active_workers)
+            active_mem_alloc = sum(n.mem_allocated for n in active_workers)
+            active_mem_cap = sum(n.mem_capacity for n in active_workers)
+            active_density = (
+                (active_cpu_alloc / active_cpu_cap + active_mem_alloc / active_mem_cap) / 2.0
+                if active_cpu_cap > 0 and active_mem_cap > 0
+                else composite_util
+            )
+        else:
+            active_density = composite_util
+
+        # Bin-packing efficiency: rewards compact active packing and multi-dimensional CPU/RAM alignment
+        alignment_factor = max(0.2, 1.0 - (mean_stranded_penalty * 0.4))
+        bin_packing_efficiency = round(active_density * alignment_factor * 100, 2)
 
         return {
             "mean_worker_cpu_util": round(mean_cpu * 100, 2),
@@ -347,6 +364,8 @@ class K8sMultiNodeEmulator:
             "composite_worker_util": round(composite_util * 100, 2),
             "cpu_variance": round(var_cpu, 4),
             "mem_variance": round(var_mem, 4),
+            "active_worker_density": round(active_density * 100, 2),
+            "stranded_penalty": round(mean_stranded_penalty, 4),
             "bin_packing_efficiency": bin_packing_efficiency,
         }
 
@@ -392,7 +411,12 @@ class ToyTwoNodeSimulator:
         return {
             "total_nodes": 2,
             "nodes": {
-                name: {"cpu_util": node.cpu_utilization, "mem_util": node.mem_utilization}
+                name: {
+                    "cpu_util": node.cpu_utilization,
+                    "mem_util": node.mem_utilization,
+                    "cpu_free": node.cpu_free,
+                    "mem_free": node.mem_free,
+                }
                 for name, node in self.nodes.items()
             },
         }

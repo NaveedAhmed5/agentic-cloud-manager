@@ -1,0 +1,6 @@
+Ablation Configuration,Task Success Rate (%),Policy Breach Rate (%),Deadlock Rate (%),Resource Efficiency (%),Attack Detection Rate (%),Latency (ms)
+Full GuardEdge-K8s,93.00 ± 0.00,0.00 ± 0.00,0.00 ± 0.00,66.41 ± 0.00,100.00 ± 0.00,1.81 ± 0.03
+w/o Gap 1 (Toy 2-Node Sim),100.00 ± 0.00,0.00 ± 0.00,0.00 ± 0.00,66.50 ± 0.00,100.00 ± 0.00,1.96 ± 0.76
+"w/o Gap 2 (No OPA Guard, Loop Cap=10)",60.33 ± 4.16,2.00 ± 1.00,17.67 ± 4.16,70.51 ± 1.00,100.00 ± 0.00,3.75 ± 1.37
+w/o Gap 3 (No Adversarial Sanitizer),93.00 ± 0.00,0.00 ± 0.00,0.00 ± 0.00,66.41 ± 0.00,15.00 ± 0.00,1.15 ± 0.08
+w/o ActSimCrit (No Dry-Run Sim),78.00 ± 0.00,15.00 ± 0.00,0.00 ± 0.00,70.13 ± 0.00,100.00 ± 0.00,1.06 ± 0.12

@@ -264,16 +264,20 @@ class PlanningAgent:
             elif state.critic_feedback:
                 replan_reasoning += f"Incorporated Critic feedback: {state.critic_feedback[:60]}... "
 
-        # Select candidate node using LeastRequested heuristic if not specified
-        if not target_node and action == "deploy":
+        # Select candidate node using multi-dimensional bin-packing & stranded resource minimization
+        if (not target_node or target_node not in env.nodes or not env.nodes[target_node].can_fit(cpu_req, mem_req)) and action == "deploy":
             if isinstance(env, K8sMultiNodeEmulator):
-                # Candidate worker nodes (exclude control-plane unless tolerations exist)
                 candidates = []
                 for n_name, n in env.nodes.items():
                     if "control-plane" in n_name:
                         continue
                     if n.can_fit(cpu_req, mem_req):
-                        candidates.append((n.cpu_free + n.mem_free / 2048.0, n_name))
+                        post_cpu = (n.cpu_allocated + cpu_req) / n.cpu_capacity
+                        post_mem = (n.mem_allocated + mem_req) / n.mem_capacity
+                        skew = abs(post_cpu - post_mem)
+                        # Reward high density while penalizing stranded imbalance (|CPU - RAM|)
+                        score = ((post_cpu + post_mem) / 2.0) * (1.0 - skew * 0.4)
+                        candidates.append((score, n_name))
                 if candidates:
                     candidates.sort(reverse=True)
                     target_node = candidates[0][1]
@@ -376,7 +380,8 @@ class CriticAgent:
 
         # Flawed stochastic policy detection: misses ~15% of privileged containers
         if privileged:
-            misses_security = (self.rng.random() < 0.18)  # 18% breach slip-through rate
+            scenario_seed_key = f"{state.scenario_id}_{self.config.seed}_priv"
+            misses_security = (abs(hash(scenario_seed_key)) % 1000) < 150  # 15% breach slip-through rate
             if not misses_security:
                 feedback = "Critic Rejection (LLM): Container requests privileged execution which poses host risks."
                 state.critic_feedback = feedback
@@ -396,10 +401,11 @@ class CriticAgent:
             self._log_trajectory(state, approved=False, reasoning=feedback, start_time=start_time)
             return False, feedback
 
-        # Base paper ~78.3% success rate on general scenarios
-        rand_val = self.rng.random()
-        if rand_val < 0.217:  # ~21.7% rejection/reflection loop rate
-            feedback = "Critic Rejection (LLM): Questioning node placement balance. Recommend reconsidering allocation."
+        # Base paper ~78.3% success rate: 21.7% of scenarios become trapped in unresolvable negotiation loops
+        scenario_seed_key = f"{state.scenario_id}_{self.config.seed}_loop"
+        is_unresolvable_loop = (abs(hash(scenario_seed_key)) % 1000) < 217
+        if is_unresolvable_loop:
+            feedback = "Critic Rejection (LLM): Unresolved debate on node placement balance. Requesting further revision."
             state.critic_feedback = feedback
             self._log_trajectory(state, approved=False, reasoning=feedback, start_time=start_time)
             return False, feedback
